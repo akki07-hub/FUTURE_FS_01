@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Aakhil is a full stack developer and computer science student at GITAM University. See projects, skills and how to get in touch."
+      content="Aakhil is a full stack and XR developer and computer science student at GITAM University. See web, AR and VR projects, skills and how to get in touch."
     />
     <meta name="theme-color" content="#0a0a0a" />
     <link rel="canonical" href="https://akki07-hub.github.io/FUTURE_FS_01/" />
@@ -15,14 +15,14 @@
 
     <!-- Link previews (WhatsApp, LinkedIn, X, etc.) -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Aakhil | Full Stack Developer" />
-    <meta property="og:description" content="Full-stack apps, dashboards and business websites by Aakhil, CS student at GITAM University." />
+    <meta property="og:title" content="Aakhil | Full Stack &amp; XR Developer" />
+    <meta property="og:description" content="Web apps, AR and VR projects by Aakhil, CS student at GITAM University." />
     <meta property="og:url" content="https://akki07-hub.github.io/FUTURE_FS_01/" />
     <meta property="og:image" content="https://akki07-hub.github.io/FUTURE_FS_01/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <title>Aakhil | Full Stack Developer</title>
+    <title>Aakhil | Full Stack &amp; XR Developer</title>
     <script>document.documentElement.classList.add('js');</script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -69,19 +69,19 @@
         <div class="wrap">
           <p class="label hero__label" data-reveal>
             <span class="status-dot" aria-hidden="true"></span>
-            Full Stack Developer &middot; Open to work
+            Full Stack &amp; XR Developer &middot; Open to work
           </p>
 
-          <h1 class="hero__title" aria-label="I build things for the web.">
+          <h1 class="hero__title" aria-label="I build for web, AR and VR.">
             <span class="line" data-reveal><span>I build</span></span>
-            <span class="line" data-reveal><span>things for</span></span>
-            <span class="line line--outline" data-reveal><span>the web.</span></span>
+            <span class="line" data-reveal><span>for web,</span></span>
+            <span class="line line--outline" data-reveal><span>AR &amp; VR.</span></span>
           </h1>
 
           <div class="hero__bottom">
             <p class="hero__lead" data-reveal>
-              Computer science student at GITAM University. I design and build full-stack
-              apps, dashboards and business websites, from database to deployment.
+              Computer science student at GITAM University. I build full-stack web apps,
+              dashboards and business websites, plus AR and VR experiences in Unity.
             </p>
             <a href="#work" class="arrow-link" data-reveal>
               See my work <span aria-hidden="true">&darr;</span>
@@ -91,7 +91,7 @@
 
         <ul class="stats wrap" aria-label="Highlights">
           <li class="stat" data-reveal>
-            <span class="stat__num">05</span>
+            <span class="stat__num">07</span>
             <span class="label">Projects built</span>
           </li>
           <li class="stat" data-reveal>
@@ -99,8 +99,8 @@
             <span class="label">Live demos</span>
           </li>
           <li class="stat" data-reveal>
-            <span class="stat__num" translate="no">MERN</span>
-            <span class="label">Main stack</span>
+            <span class="stat__num">02</span>
+            <span class="label">AR / VR apps</span>
           </li>
         </ul>
       </section>
@@ -116,6 +116,83 @@
           <div class="wrap project__grid">
             <div class="project__text">
               <p class="label">Project 01</p>
+              <h3 class="project__name" translate="no">SmartLab AR</h3>
+              <p class="project__tags label">Augmented reality <i>&bull;</i> Android <i>&bull;</i> Unity</p>
+              <p class="project__desc">
+                An AR lab layout designer for Android phones. Scan a room, then place desks, lab tables,
+                chairs, monitors, CPU towers, keyboards, mice and networking equipment on detected floors
+                and desk tops, and see the lab before it&rsquo;s built.
+              </p>
+              <ul class="project__points">
+                <li>Objects stay fixed in the room with AR anchors, and can be moved, rotated 45&deg;, duplicated or deleted</li>
+                <li>Monitors, CPUs, keyboards and mice stack onto desks and tables</li>
+                <li>Equipment catalogue with categories, plus measure, layout, undo and save tools</li>
+              </ul>
+              <ul class="stack" translate="no" aria-label="Technologies">
+                <li>Unity</li><li>C#</li><li>AR Foundation</li><li>ARCore</li>
+              </ul>
+              <div class="project__links">
+                <a href="https://github.com/akki07-hub/VRLABTOUR" target="_blank" rel="noopener noreferrer" class="arrow-link" aria-label="View SmartLab AR source code on GitHub">Source code <span aria-hidden="true">&nearr;</span></a>
+              </div>
+            </div>
+            <figure class="project__media project__media--phone">
+              <video
+                class="demo-video"
+                src="media/smartlab-ar.mp4"
+                poster="media/smartlab-ar-poster.jpg"
+                width="432"
+                height="960"
+                muted
+                loop
+                playsinline
+                autoplay
+                controls
+                preload="metadata"
+                aria-label="Demo video: placing a lab table, monitor and CPU tower in a real room with SmartLab AR"
+              ></video>
+              <figcaption class="label">Recorded on a phone</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="project" data-reveal>
+          <div class="wrap project__grid">
+            <div class="project__text">
+              <p class="label">Project 02</p>
+              <h3 class="project__name">VR Computer Lab Tour</h3>
+              <p class="project__tags label">Virtual reality <i>&bull;</i> Meta Quest <i>&bull;</i> Unity 6</p>
+              <p class="project__desc">
+                A virtual-reality tour of a college computer lab for Meta Quest. Walk around four
+                workstations, point at any computer to highlight it and open a panel with its hardware
+                specifications, or follow a guided tour.
+              </p>
+              <ul class="project__points">
+                <li>Smooth movement, snap turn and teleport with collision</li>
+                <li>Welcome screen and a 7-step guided tour with markers</li>
+                <li>Automated play-mode tests and a built Quest APK</li>
+              </ul>
+              <ul class="stack" translate="no" aria-label="Technologies">
+                <li>Unity 6</li><li>C#</li><li>OpenXR</li><li>XR Interaction Toolkit</li>
+              </ul>
+              <div class="project__links">
+                <a href="https://github.com/akki07-hub/SMARTLABAR" target="_blank" rel="noopener noreferrer" class="arrow-link" aria-label="View VR Computer Lab Tour source code on GitHub">Source code <span aria-hidden="true">&nearr;</span></a>
+              </div>
+            </div>
+            <figure class="project__media project__media--type" aria-hidden="true">
+              <span class="type-art">VR</span>
+              <ul class="type-specs label">
+                <li>Meta Quest</li>
+                <li>4 workstations</li>
+                <li>7-step tour</li>
+              </ul>
+            </figure>
+          </div>
+        </article>
+
+        <article class="project" data-reveal>
+          <div class="wrap project__grid">
+            <div class="project__text">
+              <p class="label">Project 03</p>
               <h3 class="project__name" translate="no">EventEase</h3>
               <p class="project__tags label">Full-stack <i>&bull;</i> REST API <i>&bull;</i> MERN</p>
               <p class="project__desc">
@@ -140,7 +217,7 @@
         <article class="project" data-reveal>
           <div class="wrap project__grid">
             <div class="project__text">
-              <p class="label">Project 02</p>
+              <p class="label">Project 04</p>
               <h3 class="project__name" translate="no">PlacementOS</h3>
               <p class="project__tags label">Dashboard <i>&bull;</i> Analytics <i>&bull;</i> Exports</p>
               <p class="project__desc">
@@ -165,7 +242,7 @@
         <article class="project" data-reveal>
           <div class="wrap project__grid">
             <div class="project__text">
-              <p class="label">Project 03</p>
+              <p class="label">Project 05</p>
               <h3 class="project__name" translate="no">CXR Fitness</h3>
               <p class="project__tags label">Business site <i>&bull;</i> Database <i>&bull;</i> Responsive</p>
               <p class="project__desc">
@@ -192,7 +269,7 @@
           <ul class="more__list">
             <li>
               <a href="https://github.com/akki07-hub/study_sync" target="_blank" rel="noopener noreferrer" class="more__row">
-                <span class="more__num label">04</span>
+                <span class="more__num label">06</span>
                 <span class="more__name" translate="no">StudySync</span>
                 <span class="more__desc">Hackathon app for planning study schedules</span>
                 <span class="more__arrow" aria-hidden="true">&nearr;</span>
@@ -200,7 +277,7 @@
             </li>
             <li>
               <a href="https://github.com/akki07-hub/firstrepo" target="_blank" rel="noopener noreferrer" class="more__row">
-                <span class="more__num label">05</span>
+                <span class="more__num label">07</span>
                 <span class="more__name">BMI Calculator</span>
                 <span class="more__desc">Python app that classifies BMI into standard ranges</span>
                 <span class="more__arrow" aria-hidden="true">&nearr;</span>
@@ -222,10 +299,10 @@
               I&rsquo;m Aakhil, a computer science student at GITAM University who learns by building.
             </p>
             <p>
-              I&rsquo;ve built a college event management system with a full REST API, a
-              placement-readiness dashboard with its own charts and exports, and a business
-              website backed by a live database. Each one started as a real problem I wanted
-              to solve.
+              I&rsquo;ve built an AR app that lays out a computer lab in a real room, a VR tour of a
+              college lab for Meta Quest, a college event management system with a full REST API,
+              a placement-readiness dashboard and a business website backed by a live database.
+              Each one started as a real problem I wanted to solve.
             </p>
             <p>
               I&rsquo;m now looking for internships, freelance projects and remote roles where I can
@@ -234,7 +311,7 @@
             </p>
             <dl class="facts">
               <div><dt class="label">Education</dt><dd>GITAM University &middot; Computer Science</dd></div>
-              <div><dt class="label">Focus</dt><dd>Full-stack web development</dd></div>
+              <div><dt class="label">Focus</dt><dd>Full-stack web &middot; AR / VR with Unity</dd></div>
               <div><dt class="label">Looking for</dt><dd>Internships, freelance, remote roles</dd></div>
             </dl>
           </div>
@@ -250,14 +327,14 @@
 
         <div class="marquee" aria-hidden="true">
           <div class="marquee__track">
-            <span>React</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>JavaScript</span><span>Python</span><span>Supabase</span><span>MySQL</span>
-            <span>React</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>JavaScript</span><span>Python</span><span>Supabase</span><span>MySQL</span>
+            <span>Unity</span><span>React</span><span>Node.js</span><span>AR Foundation</span><span>MongoDB</span><span>C#</span><span>JavaScript</span><span>OpenXR</span><span>Python</span><span>Supabase</span>
+            <span>Unity</span><span>React</span><span>Node.js</span><span>AR Foundation</span><span>MongoDB</span><span>C#</span><span>JavaScript</span><span>OpenXR</span><span>Python</span><span>Supabase</span>
           </div>
         </div>
         <div class="marquee marquee--reverse marquee--outline" aria-hidden="true">
           <div class="marquee__track">
-            <span>HTML</span><span>CSS</span><span>Java</span><span>C</span><span>Git</span><span>GitHub</span><span>Postman</span><span>Vite</span>
-            <span>HTML</span><span>CSS</span><span>Java</span><span>C</span><span>Git</span><span>GitHub</span><span>Postman</span><span>Vite</span>
+            <span>Express</span><span>ARCore</span><span>MySQL</span><span>HTML</span><span>CSS</span><span>Meta Quest</span><span>Java</span><span>Git</span><span>Postman</span>
+            <span>Express</span><span>ARCore</span><span>MySQL</span><span>HTML</span><span>CSS</span><span>Meta Quest</span><span>Java</span><span>Git</span><span>Postman</span>
           </div>
         </div>
 
@@ -265,8 +342,9 @@
           <div><p class="label">Frontend</p><p>HTML, CSS, JavaScript, React</p></div>
           <div><p class="label">Backend</p><p>Node.js, Express, REST APIs</p></div>
           <div><p class="label">Databases</p><p>MongoDB, MySQL, Supabase</p></div>
-          <div><p class="label">Languages</p><p>Python, Java, C</p></div>
-          <div><p class="label">Tools</p><p>Git, GitHub, VS Code, Postman, Vite</p></div>
+          <div><p class="label">AR / VR</p><p>Unity, AR Foundation, ARCore, OpenXR, XR Interaction Toolkit, Meta Quest</p></div>
+          <div><p class="label">Languages</p><p>JavaScript, C#, Python, Java, C</p></div>
+          <div><p class="label">Tools</p><p>Git, GitHub, VS Code, Visual Studio, Postman, Vite</p></div>
         </div>
       </section>
 

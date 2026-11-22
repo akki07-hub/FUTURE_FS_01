@@ -77,6 +77,15 @@ if ('IntersectionObserver' in window) {
   revealEls.forEach(el => el.classList.add('is-visible'));
 }
 
+// ── Demo video: no autoplay for visitors who prefer reduced motion ─
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+document.querySelectorAll('.demo-video').forEach(video => {
+  if (reduceMotion.matches) {
+    video.removeAttribute('autoplay');
+    video.pause();
+  }
+});
+
 // ── Contact: email & LinkedIn with pre-written messages ─────
 const CONTACT_EMAIL = 'smdaakhil1493@gmail.com';
 
