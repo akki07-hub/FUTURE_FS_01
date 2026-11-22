@@ -20,14 +20,39 @@ if (themeToggle) {
     const next = currentTheme() === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     try { localStorage.setItem('theme', next); } catch (e) {}
+    syncThemeColor();
   });
 }
+
+// Keep the browser UI colour in step with the chosen theme
+function syncThemeColor() {
+  const color = currentTheme() === 'dark' ? '#0b1220' : '#ffffff';
+  document.querySelectorAll('meta[name="theme-color"]').forEach(m => m.setAttribute('content', color));
+}
+if (document.documentElement.hasAttribute('data-theme')) syncThemeColor();
 
 // ── Mobile Menu Toggle ──────────────────────────────────────
 menuToggle.addEventListener('click', () => {
   const isOpen = navLinks.classList.toggle('open');
   menuToggle.classList.toggle('open', isOpen);
   menuToggle.setAttribute('aria-expanded', isOpen);
+});
+
+const closeMenu = () => {
+  navLinks.classList.remove('open');
+  menuToggle.classList.remove('open');
+  menuToggle.setAttribute('aria-expanded', 'false');
+};
+
+// Close menu with Escape or a click outside it
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+    closeMenu();
+    menuToggle.focus();
+  }
+});
+document.addEventListener('click', e => {
+  if (navLinks.classList.contains('open') && !e.target.closest('#nav-links, #menu-toggle')) closeMenu();
 });
 
 // Close menu when a nav link is clicked
@@ -39,30 +64,25 @@ navItems.forEach(link => {
   });
 });
 
-// ── Active Nav Link on Scroll ───────────────────────────────
-const highlightNav = () => {
-  let current = '';
-
-  sections.forEach(section => {
-    if (window.scrollY >= section.offsetTop - 120) {
-      current = section.getAttribute('id');
-    }
+// ── Active Nav Link (IntersectionObserver, no layout reads) ─
+const navObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const id = entry.target.getAttribute('id');
+    navItems.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+    });
   });
-
-  navItems.forEach(link => {
-    link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-  });
-};
+}, { rootMargin: '-45% 0px -50% 0px' });
+sections.forEach(section => navObserver.observe(section));
 
 // ── Navbar Shadow on Scroll ─────────────────────────────────
 const handleHeaderScroll = () => {
   siteHeader.classList.toggle('is-scrolled', window.scrollY > 8);
 };
 
-window.addEventListener('scroll', () => {
-  highlightNav();
-  handleHeaderScroll();
-}, { passive: true });
+window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+handleHeaderScroll();
 
 // ── Scroll-In Animation (Intersection Observer) ─────────────
 const animatedEls = document.querySelectorAll('[data-aos]');
