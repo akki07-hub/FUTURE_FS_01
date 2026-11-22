@@ -95,19 +95,45 @@ if (contactForm) {
       return;
     }
 
-    // Simulate sending (replace with real backend / EmailJS / Formspree)
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      formStatus.style.color = '#f87171';
+      formStatus.textContent = 'Please enter a valid email address.';
+      return;
+    }
+
+    // Send the message to my inbox via FormSubmit (formsubmit.co)
     submitBtn.disabled    = true;
     submitBtn.textContent = 'Sending…';
+    formStatus.textContent = '';
 
-    setTimeout(() => {
-      formStatus.style.color = '#4ade80';
-      formStatus.textContent = '✓ Message sent! I will get back to you soon.';
-      contactForm.reset();
-      submitBtn.disabled    = false;
-      submitBtn.textContent = 'Send Message';
-
-      // Clear status after 5 seconds
-      setTimeout(() => { formStatus.textContent = ''; }, 5000);
-    }, 1200);
+    fetch('https://formsubmit.co/ajax/smdaakhil1493@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name,
+        email,
+        message,
+        _subject: `Portfolio message from ${name}`,
+        _replyto: email,
+        _template: 'table',
+        _captcha: 'false'
+      })
+    })
+      .then(res => res.json().then(data => ({ ok: res.ok, data })))
+      .then(({ ok, data }) => {
+        if (!ok || String(data.success) !== 'true') throw new Error(data.message || 'Send failed');
+        formStatus.style.color = '#4ade80';
+        formStatus.textContent = '✓ Message sent! I will get back to you soon.';
+        contactForm.reset();
+        setTimeout(() => { formStatus.textContent = ''; }, 6000);
+      })
+      .catch(() => {
+        formStatus.style.color = '#f87171';
+        formStatus.textContent = 'Sorry, the message could not be sent. Please email me directly at smdaakhil1493@gmail.com.';
+      })
+      .finally(() => {
+        submitBtn.disabled    = false;
+        submitBtn.textContent = 'Send Message';
+      });
   });
 }

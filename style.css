@@ -301,6 +301,23 @@ ul {
   border-color: var(--accent);
 }
 
+.btn--demo {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn--demo:hover {
+  background: var(--accent);
+  filter: brightness(1.12);
+}
+
+.project-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .btn--large {
   padding: 16px 36px;
   font-size: 1.05rem;
