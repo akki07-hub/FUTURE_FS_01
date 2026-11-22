@@ -501,6 +501,7 @@ p { text-wrap: pretty; }
   font-size: 0.85rem;
   color: #3d4a00;
 }
+.connect-status.is-error { color: #a1221b; }
 
 /* ---------- Footer ---------- */
 .site-footer { padding: 28px 0; background: var(--paper); color: var(--ink); border-top: 1px solid var(--line-dark); }

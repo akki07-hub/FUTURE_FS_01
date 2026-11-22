@@ -7,6 +7,10 @@ const navLinks   = document.getElementById('nav-links');
 const navItems   = document.querySelectorAll('.nav-link');
 const siteHeader = document.getElementById('site-header');
 
+// ── Copyright year (always current) ─────────────────────────
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
 // ── Mobile menu ─────────────────────────────────────────────
 const closeMenu = () => {
   navLinks.classList.remove('open');
@@ -98,8 +102,9 @@ const LINKEDIN_MESSAGE =
 
 const connectStatus = document.getElementById('connect-status');
 let statusTimer;
-const showStatus = text => {
+const showStatus = (text, isError = false) => {
   if (!connectStatus) return;
+  connectStatus.classList.toggle('is-error', isError);
   connectStatus.textContent = text;
   clearTimeout(statusTimer);
   statusTimer = setTimeout(() => { connectStatus.textContent = ''; }, 7000);
@@ -135,14 +140,16 @@ if (linkedinBtn) {
   linkedinBtn.addEventListener('click', async () => {
     const ok = await copyText(LINKEDIN_MESSAGE);
     showStatus(ok
-      ? 'Message copied. On LinkedIn, click Message or Connect and paste it (Ctrl+V).'
-      : 'LinkedIn opened. Introduce yourself and mention you saw my portfolio.');
+      ? '✓ Message copied. On LinkedIn, click Message or Connect and paste it (Ctrl+V).'
+      : 'Couldn’t copy the message automatically. On LinkedIn, introduce yourself and mention you saw my portfolio.', !ok);
   });
 }
 
 document.querySelectorAll('[data-copy="email"]').forEach(btn => {
   btn.addEventListener('click', async () => {
     const ok = await copyText(CONTACT_EMAIL);
-    showStatus(ok ? `Email address copied: ${CONTACT_EMAIL}` : `My email: ${CONTACT_EMAIL}`);
+    showStatus(ok
+      ? `✓ Email address copied: ${CONTACT_EMAIL}`
+      : `Couldn’t copy automatically. Select and copy this address: ${CONTACT_EMAIL}`, !ok);
   });
 });
