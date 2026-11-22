@@ -7,211 +7,229 @@
       name="description"
       content="Aakhil is a full stack developer and computer science student at GITAM University. See projects, skills and contact details."
     />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <title>Aakhil | Full Stack Developer</title>
 
-    <!-- Google Fonts -->
+    <!-- Apply saved theme before paint to avoid a flash -->
+    <script>
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- ==================== NAVBAR ==================== -->
+    <!-- ==================== HEADER ==================== -->
     <header class="site-header" id="site-header">
-      <nav class="navbar" aria-label="Main navigation">
-        <a href="#home" class="logo"><span class="logo__aa">AA</span><span class="logo__dev">.dev</span></a>
-
-        <button
-          class="menu-toggle"
-          id="menu-toggle"
-          aria-label="Open navigation menu"
-          aria-expanded="false"
-          aria-controls="nav-links"
-        >
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </button>
+      <nav class="navbar container" aria-label="Main navigation">
+        <a href="#home" class="brand" aria-label="Aakhil, home">
+          <span class="brand__mark" aria-hidden="true">A</span>
+          <span class="brand__text">Aakhil</span>
+        </a>
 
         <ul class="nav-links" id="nav-links">
-          <li><a href="#home" class="nav-link">Home</a></li>
           <li><a href="#about" class="nav-link">About</a></li>
           <li><a href="#skills" class="nav-link">Skills</a></li>
           <li><a href="#projects" class="nav-link">Projects</a></li>
-          <li><a href="#contact" class="nav-link nav-link--cta">Contact</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
+
+        <div class="nav-actions">
+          <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch colour theme">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          </button>
+          <a href="#contact" class="btn btn--primary btn--sm nav-cta">Hire me</a>
+          <button
+            class="icon-btn menu-toggle"
+            id="menu-toggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="nav-links"
+          >
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+        </div>
       </nav>
     </header>
 
-    <main>
+    <main id="main">
 
       <!-- ==================== HERO ==================== -->
       <section id="home" class="hero">
-        <div class="hero-bg">
-          <div class="hero-orb hero-orb--1"></div>
-          <div class="hero-orb hero-orb--2"></div>
-          <div class="hero-grid"></div>
-        </div>
-
-        <div class="hero-content">
-          <p class="eyebrow" data-aos="fade-up">Welcome to my portfolio</p>
-          <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
-            Hello, I am <span class="gradient-text">Aakhil</span>
-          </h1>
-          <h2 class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
-            Full Stack Developer &middot; CS Student at GITAM
-          </h2>
-          <p class="hero-description" data-aos="fade-up" data-aos-delay="300">
-            I build practical web apps and software projects, from hackathon
-            products to Python tools. Open to internships, freelance work and remote roles.
-          </p>
-          <div class="hero-actions" data-aos="fade-up" data-aos-delay="400">
-            <a href="#projects" class="btn btn--primary">View Projects</a>
-            <a href="#contact" class="btn btn--ghost">Get In Touch</a>
+        <div class="container hero__grid">
+          <div class="hero__text" data-aos="fade-up">
+            <p class="status-pill"><span class="status-dot" aria-hidden="true"></span>Open to internships &amp; freelance work</p>
+            <h1 class="hero__title">Hi, I'm Aakhil.<br />I build full-stack web apps.</h1>
+            <p class="hero__lead">
+              Computer science student at <strong>GITAM University</strong> building practical
+              software, from MERN applications and dashboards to responsive business websites.
+            </p>
+            <div class="hero__actions">
+              <a href="#projects" class="btn btn--primary">View my work</a>
+              <a href="#contact" class="btn btn--outline">Contact me</a>
+            </div>
+            <ul class="social-row" aria-label="Profiles">
+              <li>
+                <a href="https://github.com/akki07-hub" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/shaik-mahammed-aakhil-47132a324/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+              </li>
+              <li>
+                <a href="mailto:smdaakhil1493@gmail.com" aria-label="Email">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                </a>
+              </li>
+            </ul>
           </div>
 
-          <div class="hero-scroll" data-aos="fade-up" data-aos-delay="500">
-            <span>Scroll down</span>
-            <div class="scroll-line"></div>
-          </div>
+          <aside class="profile-card" data-aos="fade-up" data-aos-delay="100" aria-label="Quick facts">
+            <div class="profile-card__head">
+              <span class="profile-card__avatar" aria-hidden="true">AA</span>
+              <div>
+                <p class="profile-card__name">Aakhil</p>
+                <p class="profile-card__role">Full Stack Developer</p>
+              </div>
+            </div>
+            <dl class="facts">
+              <div class="facts__row">
+                <dt>Education</dt>
+                <dd>GITAM University, Computer Science</dd>
+              </div>
+              <div class="facts__row">
+                <dt>Focus</dt>
+                <dd>Full-stack web (MERN)</dd>
+              </div>
+              <div class="facts__row">
+                <dt>Projects</dt>
+                <dd>5 built &middot; 2 live demos</dd>
+              </div>
+              <div class="facts__row">
+                <dt>Looking for</dt>
+                <dd>Internships, freelance, remote roles</dd>
+              </div>
+            </dl>
+            <ul class="chip-row" aria-label="Main technologies">
+              <li class="chip">React</li>
+              <li class="chip">Node.js</li>
+              <li class="chip">Express</li>
+              <li class="chip">MongoDB</li>
+              <li class="chip">Python</li>
+            </ul>
+          </aside>
         </div>
       </section>
 
       <!-- ==================== ABOUT ==================== -->
       <section id="about" class="section">
-        <div class="container">
-          <div class="section-header">
-            <p class="eyebrow">About Me</p>
-            <h2 class="section-title">Focused On <span class="gradient-text">Learning & Building</span></h2>
-            <p class="section-subtitle">
-              A passionate student developer on a mission to turn ideas into real, impactful software.
+        <div class="container split">
+          <header class="section-head" data-aos="fade-up">
+            <p class="eyebrow">01 &mdash; About</p>
+            <h2 class="section-title">Learning by building real software</h2>
+          </header>
+
+          <div class="split__body" data-aos="fade-up" data-aos-delay="100">
+            <p class="lead">
+              I'm a computer science student who learns best by shipping. I've built a
+              college event management system, a placement-readiness dashboard and a
+              business website with a live database, and I'm looking for opportunities to
+              do this work on real teams.
             </p>
-          </div>
-
-          <div class="about-grid">
-            <article class="info-card" data-aos="fade-up">
-              <div class="info-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3L2 9l10 6 10-6-10-6z"/><path d="M2 9v6m20-6v6M6 12v5c0 1.1 2.686 3 6 3s6-1.9 6-3v-5"/></svg>
+            <div class="about-grid">
+              <div class="about-item">
+                <h3>Education</h3>
+                <p>Engineering degree at GITAM University with a focus on computer science and software development.</p>
               </div>
-              <h3>Education</h3>
-              <p>Student at <strong>Gitam University</strong>, pursuing a degree in engineering with a focus on computer science and software development.</p>
-            </article>
-
-            <article class="info-card" data-aos="fade-up" data-aos-delay="100">
-              <div class="info-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 21h6m-6-3h6M12 3a6 6 0 0 1 4 10.47V18H8v-4.53A6 6 0 0 1 12 3z"/></svg>
+              <div class="about-item">
+                <h3>Interests</h3>
+                <p>Full-stack development, software engineering and infrastructure technologies.</p>
               </div>
-              <h3>Interests</h3>
-              <p>Passionate about <strong>Full Stack Development</strong>, Software Development, and Infrastructure technologies. Always exploring what's next.</p>
-            </article>
-
-            <article class="info-card" data-aos="fade-up" data-aos-delay="200">
-              <div class="info-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8l6 4-4 4z"/></svg>
+              <div class="about-item">
+                <h3>Goals</h3>
+                <p>Grow through real-world projects and land a role as a software or infrastructure developer.</p>
               </div>
-              <h3>Goals</h3>
-              <p>Focused on <strong>building real-world projects</strong>, learning new technologies, and landing a role as a Software or Infrastructure Developer.</p>
-            </article>
-
-            <article class="info-card" data-aos="fade-up" data-aos-delay="300">
-              <div class="info-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              <div class="about-item">
+                <h3>Approach</h3>
+                <p>Practical and hands-on. Every project is a chance to practise, improve and deliver something useful.</p>
               </div>
-              <h3>Approach</h3>
-              <p>I believe in <strong>learning by doing</strong>. Every project is an opportunity to practice, improve, and deliver something meaningful.</p>
-            </article>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- ==================== SKILLS ==================== -->
-      <section id="skills" class="section section--muted">
-        <div class="container">
-          <div class="section-header">
-            <p class="eyebrow">Skills</p>
-            <h2 class="section-title">Technologies I <span class="gradient-text">Work With</span></h2>
-            <p class="section-subtitle">My toolkit across the full development stack.</p>
-          </div>
+      <section id="skills" class="section section--alt">
+        <div class="container split">
+          <header class="section-head" data-aos="fade-up">
+            <p class="eyebrow">02 &mdash; Skills</p>
+            <h2 class="section-title">Technologies I work with</h2>
+            <p class="section-sub">Every tool listed here is used in at least one of my projects.</p>
+          </header>
 
-          <div class="skills-grid">
-
-            <article class="skill-card" data-aos="fade-up">
-              <div class="skill-card__header">
-                <span class="skill-card__icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                </span>
-                <h3>Frontend</h3>
-              </div>
-              <ul class="skill-list">
-                <li class="skill-tag">HTML</li>
-                <li class="skill-tag">CSS</li>
-                <li class="skill-tag">JavaScript</li>
-                <li class="skill-tag">React</li>
+          <div class="skills-table" data-aos="fade-up" data-aos-delay="100">
+            <div class="skills-row">
+              <h3 class="skills-row__label">Frontend</h3>
+              <ul class="chip-row">
+                <li class="chip">HTML</li>
+                <li class="chip">CSS</li>
+                <li class="chip">JavaScript</li>
+                <li class="chip">React</li>
               </ul>
-            </article>
-
-            <article class="skill-card" data-aos="fade-up" data-aos-delay="100">
-              <div class="skill-card__header">
-                <span class="skill-card__icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-                </span>
-                <h3>Backend</h3>
-              </div>
-              <ul class="skill-list">
-                <li class="skill-tag">Node.js</li>
-                <li class="skill-tag">Express</li>
+            </div>
+            <div class="skills-row">
+              <h3 class="skills-row__label">Backend</h3>
+              <ul class="chip-row">
+                <li class="chip">Node.js</li>
+                <li class="chip">Express</li>
+                <li class="chip">REST APIs</li>
               </ul>
-            </article>
-
-            <article class="skill-card" data-aos="fade-up" data-aos-delay="200">
-              <div class="skill-card__header">
-                <span class="skill-card__icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-                </span>
-                <h3>Database</h3>
-              </div>
-              <ul class="skill-list">
-                <li class="skill-tag">MongoDB</li>
-                <li class="skill-tag">MySQL</li>
-                <li class="skill-tag">Supabase</li>
+            </div>
+            <div class="skills-row">
+              <h3 class="skills-row__label">Databases</h3>
+              <ul class="chip-row">
+                <li class="chip">MongoDB</li>
+                <li class="chip">MySQL</li>
+                <li class="chip">Supabase</li>
               </ul>
-            </article>
-
-            <article class="skill-card" data-aos="fade-up" data-aos-delay="300">
-              <div class="skill-card__header">
-                <span class="skill-card__icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                </span>
-                <h3>Programming</h3>
-              </div>
-              <ul class="skill-list">
-                <li class="skill-tag">Python</li>
-                <li class="skill-tag">C Programming</li>
-                <li class="skill-tag">Java</li>
+            </div>
+            <div class="skills-row">
+              <h3 class="skills-row__label">Languages</h3>
+              <ul class="chip-row">
+                <li class="chip">Python</li>
+                <li class="chip">Java</li>
+                <li class="chip">C</li>
               </ul>
-            </article>
-
-            <article class="skill-card" data-aos="fade-up" data-aos-delay="400">
-              <div class="skill-card__header">
-                <span class="skill-card__icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                </span>
-                <h3>Tools</h3>
-              </div>
-              <ul class="skill-list">
-                <li class="skill-tag">Git</li>
-                <li class="skill-tag">GitHub</li>
-                <li class="skill-tag">VS Code</li>
-                <li class="skill-tag">Postman</li>
-                <li class="skill-tag">Vite</li>
+            </div>
+            <div class="skills-row">
+              <h3 class="skills-row__label">Tools</h3>
+              <ul class="chip-row">
+                <li class="chip">Git</li>
+                <li class="chip">GitHub</li>
+                <li class="chip">VS Code</li>
+                <li class="chip">Postman</li>
+                <li class="chip">Vite</li>
               </ul>
-            </article>
-
+            </div>
           </div>
         </div>
       </section>
@@ -219,246 +237,156 @@
       <!-- ==================== PROJECTS ==================== -->
       <section id="projects" class="section">
         <div class="container">
-          <div class="section-header">
-            <p class="eyebrow">Projects</p>
-            <h2 class="section-title">Things I Have <span class="gradient-text">Built</span></h2>
-            <p class="section-subtitle">Full-stack apps, dashboards and websites I've designed and built.</p>
-          </div>
+          <header class="section-head section-head--row" data-aos="fade-up">
+            <div>
+              <p class="eyebrow">03 &mdash; Projects</p>
+              <h2 class="section-title">Selected work</h2>
+            </div>
+            <a href="https://github.com/akki07-hub" target="_blank" rel="noopener noreferrer" class="text-link">All repositories on GitHub &rarr;</a>
+          </header>
 
           <div class="projects-grid">
 
             <article class="project-card" data-aos="fade-up">
-              <div class="project-card__image">
-                <div class="project-card__badge"></div>
-                <img
-                  src="images/eventease.png"
-                  alt="EventEase dashboard showing event and registration statistics"
-                  loading="lazy"
-                />
-                <div class="project-card__overlay"></div>
+              <div class="project-card__media">
+                <img src="images/eventease.png" alt="EventEase dashboard showing event and registration statistics" loading="lazy" />
               </div>
-              <div class="project-card__content">
+              <div class="project-card__body">
+                <p class="project-card__kind">Full-stack MERN app</p>
                 <h3 class="project-card__title">EventEase</h3>
                 <p class="project-card__desc">
-                  A full-stack MERN app for managing college events. Organizers create events,
-                  students register, and the system enforces seat limits, blocks duplicate
-                  sign-ups and tracks participants. Includes a REST API, Postman collection
-                  and a 35-page project report.
+                  College event management system. Organizers create events, students register,
+                  and the app enforces seat limits, blocks duplicate sign-ups and tracks participants.
                 </p>
-                <div class="project-card__tech">
-                  <span class="tech-badge">React</span>
-                  <span class="tech-badge">Node.js</span>
-                  <span class="tech-badge">Express</span>
-                  <span class="tech-badge">MongoDB</span>
-                </div>
+                <ul class="project-card__points">
+                  <li>REST API with 18 endpoints and a Postman collection</li>
+                  <li>35-page project report</li>
+                </ul>
+                <ul class="tag-row" aria-label="Technologies">
+                  <li>React</li><li>Node.js</li><li>Express</li><li>MongoDB</li>
+                </ul>
                 <div class="project-card__links">
-                  <a href="https://github.com/akki07-hub/eventease" target="_blank" rel="noopener noreferrer" class="btn btn--small" aria-label="View EventEase code on GitHub">View Code</a>
+                  <a href="https://github.com/akki07-hub/eventease" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm" aria-label="View EventEase code on GitHub">Source code</a>
                 </div>
               </div>
             </article>
 
             <article class="project-card" data-aos="fade-up" data-aos-delay="100">
-              <div class="project-card__image">
-                <div class="project-card__badge"></div>
-                <img
-                  src="images/placementos.jpg"
-                  alt="PlacementOS dashboard with progress, readiness score and streak cards"
-                  loading="lazy"
-                />
-                <div class="project-card__overlay"></div>
+              <div class="project-card__media">
+                <img src="images/placementos.jpg" alt="PlacementOS dashboard with progress, readiness score and streak cards" loading="lazy" />
               </div>
-              <div class="project-card__content">
+              <div class="project-card__body">
+                <p class="project-card__kind">Web dashboard</p>
                 <h3 class="project-card__title">PlacementOS</h3>
                 <p class="project-card__desc">
-                  A placement-preparation dashboard for students. Tracks a career roadmap,
-                  tasks on a Kanban board, skills and streaks, calculates a weighted placement
-                  readiness score, and exports PDF, CSV and JSON reports.
+                  Placement-preparation dashboard for students: career roadmap, Kanban tasks,
+                  skill tracking and streaks, with a weighted placement-readiness score.
                 </p>
-                <div class="project-card__tech">
-                  <span class="tech-badge">JavaScript</span>
-                  <span class="tech-badge">HTML</span>
-                  <span class="tech-badge">CSS</span>
-                  <span class="tech-badge">Charts</span>
-                </div>
+                <ul class="project-card__points">
+                  <li>Custom SVG/Canvas charts, dark and light mode</li>
+                  <li>PDF, CSV and JSON export</li>
+                </ul>
+                <ul class="tag-row" aria-label="Technologies">
+                  <li>JavaScript</li><li>HTML</li><li>CSS</li>
+                </ul>
                 <div class="project-card__links">
-                  <a href="https://akki07-hub.github.io/PlacementOS/" target="_blank" rel="noopener noreferrer" class="btn btn--small btn--demo" aria-label="Open PlacementOS live demo">Live Demo</a>
-                  <a href="https://github.com/akki07-hub/PlacementOS" target="_blank" rel="noopener noreferrer" class="btn btn--small" aria-label="View PlacementOS code on GitHub">View Code</a>
+                  <a href="https://akki07-hub.github.io/PlacementOS/" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm" aria-label="Open PlacementOS live demo">Live demo</a>
+                  <a href="https://github.com/akki07-hub/PlacementOS" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm" aria-label="View PlacementOS code on GitHub">Source code</a>
                 </div>
               </div>
             </article>
 
             <article class="project-card" data-aos="fade-up" data-aos-delay="200">
-              <div class="project-card__image">
-                <div class="project-card__badge"></div>
-                <img
-                  src="images/cxr-fitness.jpg"
-                  alt="CXR Fitness Club landing page hero section"
-                  loading="lazy"
-                />
-                <div class="project-card__overlay"></div>
+              <div class="project-card__media">
+                <img src="images/cxr-fitness.jpg" alt="CXR Fitness Club landing page hero section" loading="lazy" />
               </div>
-              <div class="project-card__content">
+              <div class="project-card__body">
+                <p class="project-card__kind">Business website</p>
                 <h3 class="project-card__title">CXR Fitness Club</h3>
                 <p class="project-card__desc">
-                  A responsive landing page for a gym in Visakhapatnam, with scroll animations,
-                  a BMI calculator, animated counters, and a contact form that saves
-                  enquiries to a Supabase (PostgreSQL) database.
+                  Responsive website for a gym in Visakhapatnam, with scroll animations,
+                  a BMI calculator and animated counters.
                 </p>
-                <div class="project-card__tech">
-                  <span class="tech-badge">HTML</span>
-                  <span class="tech-badge">CSS</span>
-                  <span class="tech-badge">JavaScript</span>
-                  <span class="tech-badge">Supabase</span>
-                </div>
+                <ul class="project-card__points">
+                  <li>Contact form saves enquiries to Supabase (PostgreSQL)</li>
+                  <li>Fully responsive with a mobile menu</li>
+                </ul>
+                <ul class="tag-row" aria-label="Technologies">
+                  <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Supabase</li>
+                </ul>
                 <div class="project-card__links">
-                  <a href="https://akki07-hub.github.io/FUTURE_FS_03/" target="_blank" rel="noopener noreferrer" class="btn btn--small btn--demo" aria-label="Open CXR Fitness Club live site">Live Demo</a>
-                  <a href="https://github.com/akki07-hub/FUTURE_FS_03" target="_blank" rel="noopener noreferrer" class="btn btn--small" aria-label="View CXR Fitness Club code on GitHub">View Code</a>
+                  <a href="https://akki07-hub.github.io/FUTURE_FS_03/" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm" aria-label="Open CXR Fitness Club live site">Live demo</a>
+                  <a href="https://github.com/akki07-hub/FUTURE_FS_03" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm" aria-label="View CXR Fitness Club code on GitHub">Source code</a>
                 </div>
               </div>
             </article>
-
-            <article class="project-card" data-aos="fade-up">
-              <div class="project-card__image">
-                <div class="project-card__badge"></div>
-                <img
-                  src="images/studysync.jpg"
-                  alt="Student studying with a laptop for StudySync productivity app"
-                  loading="lazy"
-                />
-                <div class="project-card__overlay"></div>
-              </div>
-              <div class="project-card__content">
-                <h3 class="project-card__title">StudySync</h3>
-                <p class="project-card__desc">
-                  A productivity app and website built during a hackathon. Helps students
-                  manage study schedules, organize tasks, and stay consistent with learning goals.
-                </p>
-                <div class="project-card__tech">
-                  <span class="tech-badge">HTML</span>
-                  <span class="tech-badge">CSS</span>
-                  <span class="tech-badge">JavaScript</span>
-                  <span class="tech-badge">Python</span>
-                </div>
-                <a href="https://github.com/akki07-hub/study_sync" target="_blank" rel="noopener noreferrer" class="btn btn--small" aria-label="View StudySync code on GitHub">View Code</a>
-              </div>
-            </article>
-
-            <article class="project-card" data-aos="fade-up" data-aos-delay="100">
-              <div class="project-card__image">
-                <div class="project-card__badge"></div>
-                <img
-                  src="images/bmi.jpg"
-                  alt="Fitness and health tracking for BMI Calculator project"
-                  loading="lazy"
-                />
-                <div class="project-card__overlay"></div>
-              </div>
-              <div class="project-card__content">
-                <h3 class="project-card__title">BMI Calculator</h3>
-                <p class="project-card__desc">
-                  A Python-based application that calculates Body Mass Index using height
-                  and weight inputs. Classifies users into fitness categories such as
-                  underweight, normal weight, overweight, or obese based on standard BMI ranges.
-                </p>
-                <div class="project-card__tech">
-                  <span class="tech-badge">Python</span>
-                </div>
-                <a href="https://github.com/akki07-hub/firstrepo" target="_blank" rel="noopener noreferrer" class="btn btn--small" aria-label="View BMI Calculator code on GitHub">View Code</a>
-              </div>
-            </article>
-
           </div>
+
+          <h3 class="subhead" data-aos="fade-up">Other projects</h3>
+          <ul class="mini-list" data-aos="fade-up">
+            <li class="mini-item">
+              <div class="mini-item__main">
+                <h4>StudySync</h4>
+                <p>Hackathon productivity app that helps students plan study schedules and stay consistent.</p>
+              </div>
+              <ul class="tag-row" aria-label="Technologies"><li>JavaScript</li><li>Python</li></ul>
+              <a href="https://github.com/akki07-hub/study_sync" target="_blank" rel="noopener noreferrer" class="text-link" aria-label="View StudySync code on GitHub">Code &rarr;</a>
+            </li>
+            <li class="mini-item">
+              <div class="mini-item__main">
+                <h4>BMI Calculator</h4>
+                <p>Python app that calculates Body Mass Index and classifies the result into standard ranges.</p>
+              </div>
+              <ul class="tag-row" aria-label="Technologies"><li>Python</li></ul>
+              <a href="https://github.com/akki07-hub/firstrepo" target="_blank" rel="noopener noreferrer" class="text-link" aria-label="View BMI Calculator code on GitHub">Code &rarr;</a>
+            </li>
+          </ul>
         </div>
       </section>
 
       <!-- ==================== CONTACT ==================== -->
-      <section id="contact" class="section section--muted">
-        <div class="container">
-          <div class="section-header">
-            <p class="eyebrow">Contact</p>
-            <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
-            <p class="section-subtitle">
-              Have a project idea, an opportunity, or just want to say hello? I'd love to hear from you.
+      <section id="contact" class="section section--alt">
+        <div class="container split">
+          <header class="section-head" data-aos="fade-up">
+            <p class="eyebrow">04 &mdash; Contact</p>
+            <h2 class="section-title">Let's work together</h2>
+            <p class="section-sub">
+              Have an internship, a freelance project or a question? Send a message and I'll reply by email.
             </p>
-          </div>
+            <ul class="contact-list">
+              <li>
+                <span class="contact-list__label">Email</span>
+                <a href="mailto:smdaakhil1493@gmail.com">smdaakhil1493@gmail.com</a>
+              </li>
+              <li>
+                <span class="contact-list__label">GitHub</span>
+                <a href="https://github.com/akki07-hub" target="_blank" rel="noopener noreferrer">github.com/akki07-hub</a>
+              </li>
+              <li>
+                <span class="contact-list__label">LinkedIn</span>
+                <a href="https://www.linkedin.com/in/shaik-mahammed-aakhil-47132a324/" target="_blank" rel="noopener noreferrer">linkedin.com/in/shaik-mahammed-aakhil</a>
+              </li>
+            </ul>
+          </header>
 
-          <div class="contact-layout">
-            <!-- Contact Links -->
-            <div class="contact-links" data-aos="fade-right">
-              <a href="https://github.com/akki07-hub" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="GitHub Profile">
-                <div class="contact-link__icon">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                </div>
-                <div>
-                  <p class="contact-link__label">GitHub</p>
-                  <p class="contact-link__value">github.com/akki07-hub</p>
-                </div>
-              </a>
-
-              <a href="https://www.linkedin.com/in/shaik-mahammed-aakhil-47132a324/" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="LinkedIn Profile">
-                <div class="contact-link__icon contact-link__icon--linkedin">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                </div>
-                <div>
-                  <p class="contact-link__label">LinkedIn</p>
-                  <p class="contact-link__value">linkedin.com/in/shaik-mahammed-aakhil</p>
-                </div>
-              </a>
-
-              <a href="mailto:smdaakhil1493@gmail.com" class="contact-link" aria-label="Send Email">
-                <div class="contact-link__icon contact-link__icon--email">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                </div>
-                <div>
-                  <p class="contact-link__label">Email</p>
-                  <p class="contact-link__value">smdaakhil1493@gmail.com</p>
-                </div>
-              </a>
-            </div>
-
-            <!-- Contact Form -->
-            <form class="contact-form" id="contact-form" novalidate data-aos="fade-left">
+          <form class="contact-form" id="contact-form" novalidate data-aos="fade-up" data-aos-delay="100">
+            <div class="form-row">
               <div class="form-group">
                 <label for="contact-name">Name</label>
-                <input
-                  type="text"
-                  id="contact-name"
-                  name="name"
-                  placeholder="Your name"
-                  required
-                  autocomplete="name"
-                />
+                <input type="text" id="contact-name" name="name" placeholder="Your name" required autocomplete="name" />
               </div>
-
               <div class="form-group">
                 <label for="contact-email">Email</label>
-                <input
-                  type="email"
-                  id="contact-email"
-                  name="email"
-                  placeholder="your@email.com"
-                  required
-                  autocomplete="email"
-                />
+                <input type="email" id="contact-email" name="email" placeholder="you@example.com" required autocomplete="email" />
               </div>
-
-              <div class="form-group">
-                <label for="contact-message">Message</label>
-                <textarea
-                  id="contact-message"
-                  name="message"
-                  rows="5"
-                  placeholder="Write your message here..."
-                  required
-                ></textarea>
-              </div>
-
-              <button type="submit" class="btn btn--primary btn--full" id="submit-btn">
-                Send Message
-              </button>
-              <p class="form-status" id="form-status" aria-live="polite"></p>
-            </form>
-          </div>
+            </div>
+            <div class="form-group">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" name="message" rows="6" placeholder="Tell me about the role or project" required></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary btn--block" id="submit-btn">Send message</button>
+            <p class="form-status" id="form-status" aria-live="polite"></p>
+          </form>
         </div>
       </section>
 
@@ -466,16 +394,14 @@
 
     <!-- ==================== FOOTER ==================== -->
     <footer class="site-footer">
-      <div class="container">
-        <div class="footer-inner">
-          <a href="#home" class="logo"><span class="logo__aa">AA</span><span class="logo__dev">.dev</span></a>
-          <p class="footer-copy">&copy; 2026 All rights reserved.</p>
-          <div class="footer-links">
-            <a href="https://github.com/akki07-hub" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://www.linkedin.com/in/shaik-mahammed-aakhil-47132a324/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="mailto:smdaakhil1493@gmail.com">Email</a>
-          </div>
-        </div>
+      <div class="container footer-inner">
+        <p>&copy; 2026 Aakhil. Built with HTML, CSS and JavaScript.</p>
+        <ul class="footer-links">
+          <li><a href="https://github.com/akki07-hub" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/shaik-mahammed-aakhil-47132a324/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="mailto:smdaakhil1493@gmail.com">Email</a></li>
+          <li><a href="#home">Back to top &uarr;</a></li>
+        </ul>
       </div>
     </footer>
 

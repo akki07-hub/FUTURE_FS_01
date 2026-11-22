@@ -12,6 +12,20 @@ const contactForm = document.getElementById('contact-form');
 const formStatus  = document.getElementById('form-status');
 const submitBtn   = document.getElementById('submit-btn');
 
+// ── Theme Toggle ────────────────────────────────────────────
+const themeToggle = document.getElementById('theme-toggle');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+const currentTheme = () =>
+  document.documentElement.getAttribute('data-theme') || (prefersDark.matches ? 'dark' : 'light');
+
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+}
+
 // ── Mobile Menu Toggle ──────────────────────────────────────
 menuToggle.addEventListener('click', () => {
   const isOpen = navLinks.classList.toggle('open');
@@ -45,11 +59,7 @@ const highlightNav = () => {
 
 // ── Navbar Shadow on Scroll ─────────────────────────────────
 const handleHeaderScroll = () => {
-  if (window.scrollY > 20) {
-    siteHeader.style.boxShadow = '0 4px 24px rgba(0,0,0,0.4)';
-  } else {
-    siteHeader.style.boxShadow = 'none';
-  }
+  siteHeader.classList.toggle('is-scrolled', window.scrollY > 8);
 };
 
 window.addEventListener('scroll', () => {
@@ -90,13 +100,13 @@ if (contactForm) {
     const message = document.getElementById('contact-message').value.trim();
 
     if (!name || !email || !message) {
-      formStatus.style.color = '#f87171';
+      formStatus.className = 'form-status is-error';
       formStatus.textContent = 'Please fill in all fields.';
       return;
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      formStatus.style.color = '#f87171';
+      formStatus.className = 'form-status is-error';
       formStatus.textContent = 'Please enter a valid email address.';
       return;
     }
@@ -122,18 +132,18 @@ if (contactForm) {
       .then(res => res.json().then(data => ({ ok: res.ok, data })))
       .then(({ ok, data }) => {
         if (!ok || String(data.success) !== 'true') throw new Error(data.message || 'Send failed');
-        formStatus.style.color = '#4ade80';
+        formStatus.className = 'form-status is-success';
         formStatus.textContent = '✓ Message sent! I will get back to you soon.';
         contactForm.reset();
         setTimeout(() => { formStatus.textContent = ''; }, 6000);
       })
       .catch(() => {
-        formStatus.style.color = '#f87171';
+        formStatus.className = 'form-status is-error';
         formStatus.textContent = 'Sorry, the message could not be sent. Please email me directly at smdaakhil1493@gmail.com.';
       })
       .finally(() => {
         submitBtn.disabled    = false;
-        submitBtn.textContent = 'Send Message';
+        submitBtn.textContent = 'Send message';
       });
   });
 }
