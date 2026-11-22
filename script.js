@@ -8,9 +8,6 @@ const navLinks    = document.getElementById('nav-links');
 const navItems    = document.querySelectorAll('.nav-link');
 const sections    = document.querySelectorAll('section[id]');
 const siteHeader  = document.getElementById('site-header');
-const contactForm = document.getElementById('contact-form');
-const formStatus  = document.getElementById('form-status');
-const submitBtn   = document.getElementById('submit-btn');
 
 // ── Theme Toggle ────────────────────────────────────────────
 const themeToggle = document.getElementById('theme-toggle');
@@ -89,61 +86,78 @@ animatedEls.forEach(el => {
   observer.observe(el);
 });
 
-// ── Contact Form ────────────────────────────────────────────
-if (contactForm) {
-  contactForm.addEventListener('submit', e => {
-    e.preventDefault();
+// ── Contact: Email & LinkedIn with pre-written messages ─────
+const CONTACT_EMAIL = 'smdaakhil1493@gmail.com';
 
-    // Basic client-side validation
-    const name    = document.getElementById('contact-name').value.trim();
-    const email   = document.getElementById('contact-email').value.trim();
-    const message = document.getElementById('contact-message').value.trim();
+const EMAIL_SUBJECT = 'Opportunity for Aakhil (via your portfolio)';
+const EMAIL_BODY = [
+  'Hi Aakhil,',
+  '',
+  'I came across your portfolio and would like to talk with you about an opportunity.',
+  '',
+  'My name: ',
+  'Company / organisation: ',
+  'Type of opportunity (internship / freelance / full-time / other): ',
+  'Details: ',
+  '',
+  'Looking forward to hearing from you.',
+  '',
+  'Best regards,'
+].join('\n');
 
-    if (!name || !email || !message) {
-      formStatus.className = 'form-status is-error';
-      formStatus.textContent = 'Please fill in all fields.';
-      return;
-    }
+const LINKEDIN_MESSAGE =
+  "Hi Aakhil, I came across your portfolio and was impressed by your projects. " +
+  "I'd like to connect and talk about a possible opportunity. Looking forward to hearing from you!";
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      formStatus.className = 'form-status is-error';
-      formStatus.textContent = 'Please enter a valid email address.';
-      return;
-    }
+const connectStatus = document.getElementById('connect-status');
+let statusTimer;
+const showStatus = text => {
+  if (!connectStatus) return;
+  connectStatus.textContent = text;
+  clearTimeout(statusTimer);
+  statusTimer = setTimeout(() => { connectStatus.textContent = ''; }, 7000);
+};
 
-    // Send the message to my inbox via FormSubmit (formsubmit.co)
-    submitBtn.disabled    = true;
-    submitBtn.textContent = 'Sending…';
-    formStatus.textContent = '';
+const copyText = async text => {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch (e) {
+    // Fallback for browsers that block the Clipboard API
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (err) {}
+    ta.remove();
+    return ok;
+  }
+};
 
-    fetch('https://formsubmit.co/ajax/smdaakhil1493@gmail.com', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        name,
-        email,
-        message,
-        _subject: `Portfolio message from ${name}`,
-        _replyto: email,
-        _template: 'table',
-        _captcha: 'false'
-      })
-    })
-      .then(res => res.json().then(data => ({ ok: res.ok, data })))
-      .then(({ ok, data }) => {
-        if (!ok || String(data.success) !== 'true') throw new Error(data.message || 'Send failed');
-        formStatus.className = 'form-status is-success';
-        formStatus.textContent = '✓ Message sent! I will get back to you soon.';
-        contactForm.reset();
-        setTimeout(() => { formStatus.textContent = ''; }, 6000);
-      })
-      .catch(() => {
-        formStatus.className = 'form-status is-error';
-        formStatus.textContent = 'Sorry, the message could not be sent. Please email me directly at smdaakhil1493@gmail.com.';
-      })
-      .finally(() => {
-        submitBtn.disabled    = false;
-        submitBtn.textContent = 'Send message';
-      });
+const emailBtn = document.getElementById('email-btn');
+if (emailBtn) {
+  emailBtn.href =
+    `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}&body=${encodeURIComponent(EMAIL_BODY)}`;
+}
+
+const linkedinBtn = document.getElementById('linkedin-btn');
+if (linkedinBtn) {
+  // The link opens LinkedIn in a new tab; we copy the message at the same time.
+  linkedinBtn.addEventListener('click', async () => {
+    const ok = await copyText(LINKEDIN_MESSAGE);
+    showStatus(ok
+      ? 'Message copied. On LinkedIn, click Message or Connect and paste it (Ctrl+V).'
+      : 'LinkedIn opened. Introduce yourself and mention you saw my portfolio.');
   });
 }
+
+document.querySelectorAll('[data-copy="email"]').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const ok = await copyText(CONTACT_EMAIL);
+    showStatus(ok ? `Email address copied: ${CONTACT_EMAIL}` : `My email: ${CONTACT_EMAIL}`);
+  });
+});
