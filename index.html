@@ -5,27 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Aakhil is a full stack developer and computer science student at GITAM University. See projects, skills and contact details."
+      content="Aakhil is a full stack developer and computer science student at GITAM University. See projects, skills and how to get in touch."
     />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#0a0a0a" />
     <title>Aakhil | Full Stack Developer</title>
-
-    <!-- Apply saved theme before paint to avoid a flash -->
-    <script>
-      try {
-        var t = localStorage.getItem('theme');
-        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
-      } catch (e) {}
-    </script>
+    <script>document.documentElement.classList.add('js');</script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Antonio:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -33,38 +24,27 @@
 
     <!-- ==================== HEADER ==================== -->
     <header class="site-header" id="site-header">
-      <nav class="navbar container" aria-label="Main navigation">
-        <a href="#home" class="brand" aria-label="Aakhil, home">
-          <span class="brand__mark" aria-hidden="true">A</span>
-          <span class="brand__text" translate="no">Aakhil</span>
-        </a>
+      <nav class="navbar" aria-label="Main navigation">
+        <a href="#home" class="brand" translate="no">AAKHIL<span class="brand__dot">.</span></a>
 
         <ul class="nav-links" id="nav-links">
+          <li><a href="#work" class="nav-link">Work</a></li>
           <li><a href="#about" class="nav-link">About</a></li>
           <li><a href="#skills" class="nav-link">Skills</a></li>
-          <li><a href="#projects" class="nav-link">Projects</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li><a href="#contact" class="nav-link nav-link--cta">Contact</a></li>
         </ul>
 
-        <div class="nav-actions">
-          <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch colour theme">
-            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-          </button>
-          <a href="#contact" class="btn btn--primary btn--sm nav-cta">Hire Me</a>
-          <button
-            class="icon-btn menu-toggle"
-            id="menu-toggle"
-            type="button"
-            aria-label="Open navigation menu"
-            aria-expanded="false"
-            aria-controls="nav-links"
-          >
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-          </button>
-        </div>
+        <button
+          class="menu-toggle"
+          id="menu-toggle"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="nav-links"
+        >
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
       </nav>
     </header>
 
@@ -72,315 +52,233 @@
 
       <!-- ==================== HERO ==================== -->
       <section id="home" class="hero">
-        <div class="container hero__grid">
-          <div class="hero__text" data-aos="fade-up">
-            <p class="status-pill"><span class="status-dot" aria-hidden="true"></span>Open to internships &amp; freelance work</p>
-            <h1 class="hero__title">Hi, I’m Aakhil.<br />I build full-stack web apps.</h1>
-            <p class="hero__lead">
-              Computer science student at <strong>GITAM University</strong> building practical
-              software, from MERN applications and dashboards to responsive business websites.
+        <div class="wrap">
+          <p class="label hero__label" data-reveal>
+            <span class="status-dot" aria-hidden="true"></span>
+            Full Stack Developer &middot; Open to work
+          </p>
+
+          <h1 class="hero__title" aria-label="I build things for the web.">
+            <span class="line" data-reveal><span>I build</span></span>
+            <span class="line" data-reveal><span>things for</span></span>
+            <span class="line line--outline" data-reveal><span>the web.</span></span>
+          </h1>
+
+          <div class="hero__bottom">
+            <p class="hero__lead" data-reveal>
+              Computer science student at GITAM University. I design and build full-stack
+              apps, dashboards and business websites, from database to deployment.
             </p>
-            <div class="hero__actions">
-              <a href="#projects" class="btn btn--primary">View My Work</a>
-              <a href="#contact" class="btn btn--outline">Contact Me</a>
-            </div>
-            <ul class="social-row" aria-label="Profiles">
-              <li>
-                <a href="https://github.com/akki07-hub" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.linkedin.com/in/shaik-mahammed-aakhil-47132a324/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                </a>
-              </li>
-              <li>
-                <a href="mailto:smdaakhil1493@gmail.com" aria-label="Email">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <aside class="profile-card" data-aos="fade-up" data-aos-delay="100" aria-label="Quick facts">
-            <div class="profile-card__head">
-              <span class="profile-card__avatar" aria-hidden="true">AA</span>
-              <div>
-                <p class="profile-card__name">Aakhil</p>
-                <p class="profile-card__role">Full Stack Developer</p>
-              </div>
-            </div>
-            <dl class="facts">
-              <div class="facts__row">
-                <dt>Education</dt>
-                <dd>GITAM University, Computer Science</dd>
-              </div>
-              <div class="facts__row">
-                <dt>Focus</dt>
-                <dd>Full-stack web (MERN)</dd>
-              </div>
-              <div class="facts__row">
-                <dt>Projects</dt>
-                <dd>5 built &middot; 2 live demos</dd>
-              </div>
-              <div class="facts__row">
-                <dt>Looking for</dt>
-                <dd>Internships, freelance, remote roles</dd>
-              </div>
-            </dl>
-            <ul translate="no" class="chip-row" aria-label="Main technologies">
-              <li class="chip">React</li>
-              <li class="chip">Node.js</li>
-              <li class="chip">Express</li>
-              <li class="chip">MongoDB</li>
-              <li class="chip">Python</li>
-            </ul>
-          </aside>
-        </div>
-      </section>
-
-      <!-- ==================== ABOUT ==================== -->
-      <section id="about" class="section">
-        <div class="container split">
-          <header class="section-head" data-aos="fade-up">
-            <p class="eyebrow">01 &mdash; About</p>
-            <h2 class="section-title">Learning by Building Real Software</h2>
-          </header>
-
-          <div class="split__body" data-aos="fade-up" data-aos-delay="100">
-            <p class="lead">
-              I’m a computer science student who learns best by shipping. I’ve built a
-              college event management system, a placement-readiness dashboard and a
-              business website with a live database, and I’m looking for opportunities to
-              do this work on real teams.
-            </p>
-            <div class="about-grid">
-              <div class="about-item">
-                <h3>Education</h3>
-                <p>Engineering degree at GITAM University with a focus on computer science and software development.</p>
-              </div>
-              <div class="about-item">
-                <h3>Interests</h3>
-                <p>Full-stack development, software engineering and infrastructure technologies.</p>
-              </div>
-              <div class="about-item">
-                <h3>Goals</h3>
-                <p>Grow through real-world projects and land a role as a software or infrastructure developer.</p>
-              </div>
-              <div class="about-item">
-                <h3>Approach</h3>
-                <p>Practical and hands-on. Every project is a chance to practise, improve and deliver something useful.</p>
-              </div>
-            </div>
+            <a href="#work" class="arrow-link" data-reveal>
+              See my work <span aria-hidden="true">&darr;</span>
+            </a>
           </div>
         </div>
+
+        <ul class="stats wrap" aria-label="Highlights">
+          <li class="stat" data-reveal>
+            <span class="stat__num">05</span>
+            <span class="label">Projects built</span>
+          </li>
+          <li class="stat" data-reveal>
+            <span class="stat__num">02</span>
+            <span class="label">Live demos</span>
+          </li>
+          <li class="stat" data-reveal>
+            <span class="stat__num" translate="no">MERN</span>
+            <span class="label">Main stack</span>
+          </li>
+        </ul>
       </section>
 
-      <!-- ==================== SKILLS ==================== -->
-      <section id="skills" class="section section--alt">
-        <div class="container split">
-          <header class="section-head" data-aos="fade-up">
-            <p class="eyebrow">02 &mdash; Skills</p>
-            <h2 class="section-title">Technologies I Work With</h2>
-            <p class="section-sub">Every tool listed here is used in at least one of my projects.</p>
-          </header>
-
-          <div class="skills-table" data-aos="fade-up" data-aos-delay="100">
-            <div class="skills-row">
-              <h3 class="skills-row__label">Frontend</h3>
-              <ul translate="no" class="chip-row">
-                <li class="chip">HTML</li>
-                <li class="chip">CSS</li>
-                <li class="chip">JavaScript</li>
-                <li class="chip">React</li>
-              </ul>
-            </div>
-            <div class="skills-row">
-              <h3 class="skills-row__label">Backend</h3>
-              <ul translate="no" class="chip-row">
-                <li class="chip">Node.js</li>
-                <li class="chip">Express</li>
-                <li class="chip">REST APIs</li>
-              </ul>
-            </div>
-            <div class="skills-row">
-              <h3 class="skills-row__label">Databases</h3>
-              <ul translate="no" class="chip-row">
-                <li class="chip">MongoDB</li>
-                <li class="chip">MySQL</li>
-                <li class="chip">Supabase</li>
-              </ul>
-            </div>
-            <div class="skills-row">
-              <h3 class="skills-row__label">Languages</h3>
-              <ul translate="no" class="chip-row">
-                <li class="chip">Python</li>
-                <li class="chip">Java</li>
-                <li class="chip">C</li>
-              </ul>
-            </div>
-            <div class="skills-row">
-              <h3 class="skills-row__label">Tools</h3>
-              <ul translate="no" class="chip-row">
-                <li class="chip">Git</li>
-                <li class="chip">GitHub</li>
-                <li class="chip">VS Code</li>
-                <li class="chip">Postman</li>
-                <li class="chip">Vite</li>
-              </ul>
-            </div>
-          </div>
+      <!-- ==================== WORK ==================== -->
+      <section id="work" class="work">
+        <div class="wrap section-intro">
+          <p class="label">001 // Selected work</p>
+          <h2 class="display display--md">Things I&rsquo;ve <span class="outline">shipped.</span></h2>
         </div>
-      </section>
 
-      <!-- ==================== PROJECTS ==================== -->
-      <section id="projects" class="section">
-        <div class="container">
-          <header class="section-head section-head--row" data-aos="fade-up">
-            <div>
-              <p class="eyebrow">03 &mdash; Projects</p>
-              <h2 class="section-title">Selected Work</h2>
+        <article class="project" data-reveal>
+          <div class="wrap project__grid">
+            <div class="project__text">
+              <p class="label">Project 01</p>
+              <h3 class="project__name" translate="no">EventEase</h3>
+              <p class="project__tags label">Full-stack <i>&bull;</i> REST API <i>&bull;</i> MERN</p>
+              <p class="project__desc">
+                A college event management system. Organizers create events, students register,
+                and the app enforces seat limits, blocks duplicate sign-ups and tracks every
+                participant. Built with an 18-endpoint REST API, a Postman collection and a
+                35-page project report.
+              </p>
+              <ul class="stack" translate="no" aria-label="Technologies">
+                <li>React</li><li>Node.js</li><li>Express</li><li>MongoDB</li>
+              </ul>
+              <div class="project__links">
+                <a href="https://github.com/akki07-hub/eventease" target="_blank" rel="noopener noreferrer" class="arrow-link">Source code <span aria-hidden="true">&nearr;</span></a>
+              </div>
             </div>
-            <a href="https://github.com/akki07-hub" target="_blank" rel="noopener noreferrer" class="text-link">All Repositories on GitHub &rarr;</a>
-          </header>
-
-          <div class="projects-grid">
-
-            <article class="project-card" data-aos="fade-up">
-              <div class="project-card__media">
-                <img src="images/eventease.png" width="1024" height="550" alt="EventEase dashboard showing event and registration statistics" loading="lazy" />
-              </div>
-              <div class="project-card__body">
-                <p class="project-card__kind">Full-stack MERN app</p>
-                <h3 class="project-card__title">EventEase</h3>
-                <p class="project-card__desc">
-                  College event management system. Organizers create events, students register,
-                  and the app enforces seat limits, blocks duplicate sign-ups and tracks participants.
-                </p>
-                <ul class="project-card__points">
-                  <li>REST API with 18 endpoints and a Postman collection</li>
-                  <li>35-page project report</li>
-                </ul>
-                <ul translate="no" class="tag-row" aria-label="Technologies">
-                  <li>React</li><li>Node.js</li><li>Express</li><li>MongoDB</li>
-                </ul>
-                <div class="project-card__links">
-                  <a href="https://github.com/akki07-hub/eventease" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm" aria-label="View EventEase code on GitHub">Source Code</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card" data-aos="fade-up" data-aos-delay="100">
-              <div class="project-card__media">
-                <img src="images/placementos.jpg" width="800" height="600" alt="PlacementOS dashboard with progress, readiness score and streak cards" loading="lazy" />
-              </div>
-              <div class="project-card__body">
-                <p class="project-card__kind">Web dashboard</p>
-                <h3 class="project-card__title">PlacementOS</h3>
-                <p class="project-card__desc">
-                  Placement-preparation dashboard for students: career roadmap, Kanban tasks,
-                  skill tracking and streaks, with a weighted placement-readiness score.
-                </p>
-                <ul class="project-card__points">
-                  <li>Custom SVG/Canvas charts, dark and light mode</li>
-                  <li>PDF, CSV and JSON export</li>
-                </ul>
-                <ul translate="no" class="tag-row" aria-label="Technologies">
-                  <li>JavaScript</li><li>HTML</li><li>CSS</li>
-                </ul>
-                <div class="project-card__links">
-                  <a href="https://akki07-hub.github.io/PlacementOS/" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm" aria-label="Open PlacementOS live demo">Live Demo</a>
-                  <a href="https://github.com/akki07-hub/PlacementOS" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm" aria-label="View PlacementOS code on GitHub">Source Code</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card" data-aos="fade-up" data-aos-delay="200">
-              <div class="project-card__media">
-                <img src="images/cxr-fitness.jpg" width="800" height="600" alt="CXR Fitness Club landing page hero section" loading="lazy" />
-              </div>
-              <div class="project-card__body">
-                <p class="project-card__kind">Business website</p>
-                <h3 class="project-card__title">CXR Fitness Club</h3>
-                <p class="project-card__desc">
-                  Responsive website for a gym in Visakhapatnam, with scroll animations,
-                  a BMI calculator and animated counters.
-                </p>
-                <ul class="project-card__points">
-                  <li>Contact form saves enquiries to Supabase (PostgreSQL)</li>
-                  <li>Fully responsive with a mobile menu</li>
-                </ul>
-                <ul translate="no" class="tag-row" aria-label="Technologies">
-                  <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Supabase</li>
-                </ul>
-                <div class="project-card__links">
-                  <a href="https://akki07-hub.github.io/FUTURE_FS_03/" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm" aria-label="Open CXR Fitness Club live site">Live Demo</a>
-                  <a href="https://github.com/akki07-hub/FUTURE_FS_03" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm" aria-label="View CXR Fitness Club code on GitHub">Source Code</a>
-                </div>
-              </div>
-            </article>
+            <figure class="project__media">
+              <img src="images/eventease.png" width="1024" height="550" alt="EventEase dashboard showing event and registration statistics" loading="lazy" />
+            </figure>
           </div>
+        </article>
 
-          <h3 class="subhead" data-aos="fade-up">Other Projects</h3>
-          <ul class="mini-list" data-aos="fade-up">
-            <li class="mini-item">
-              <div class="mini-item__main">
-                <h4>StudySync</h4>
-                <p>Hackathon productivity app that helps students plan study schedules and stay consistent.</p>
+        <article class="project" data-reveal>
+          <div class="wrap project__grid">
+            <div class="project__text">
+              <p class="label">Project 02</p>
+              <h3 class="project__name" translate="no">PlacementOS</h3>
+              <p class="project__tags label">Dashboard <i>&bull;</i> Analytics <i>&bull;</i> Exports</p>
+              <p class="project__desc">
+                A placement-preparation dashboard for students: career roadmap, Kanban task board,
+                skill tracking and streaks. It calculates a weighted placement-readiness score,
+                draws its own SVG/Canvas charts and exports PDF, CSV and JSON reports.
+              </p>
+              <ul class="stack" translate="no" aria-label="Technologies">
+                <li>JavaScript</li><li>HTML</li><li>CSS</li>
+              </ul>
+              <div class="project__links">
+                <a href="https://akki07-hub.github.io/PlacementOS/" target="_blank" rel="noopener noreferrer" class="btn">Live demo <span aria-hidden="true">&nearr;</span></a>
+                <a href="https://github.com/akki07-hub/PlacementOS" target="_blank" rel="noopener noreferrer" class="arrow-link">Source code <span aria-hidden="true">&nearr;</span></a>
               </div>
-              <ul translate="no" class="tag-row" aria-label="Technologies"><li>JavaScript</li><li>Python</li></ul>
-              <a href="https://github.com/akki07-hub/study_sync" target="_blank" rel="noopener noreferrer" class="text-link" aria-label="View StudySync code on GitHub">Code &rarr;</a>
+            </div>
+            <figure class="project__media">
+              <img src="images/placementos.jpg" width="800" height="600" alt="PlacementOS dashboard with progress, readiness score and streak cards" loading="lazy" />
+            </figure>
+          </div>
+        </article>
+
+        <article class="project" data-reveal>
+          <div class="wrap project__grid">
+            <div class="project__text">
+              <p class="label">Project 03</p>
+              <h3 class="project__name" translate="no">CXR Fitness</h3>
+              <p class="project__tags label">Business site <i>&bull;</i> Database <i>&bull;</i> Responsive</p>
+              <p class="project__desc">
+                A website for a gym in Visakhapatnam with scroll animations, a BMI calculator and
+                animated counters. Its contact form saves enquiries straight to a Supabase
+                (PostgreSQL) database.
+              </p>
+              <ul class="stack" translate="no" aria-label="Technologies">
+                <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Supabase</li>
+              </ul>
+              <div class="project__links">
+                <a href="https://akki07-hub.github.io/FUTURE_FS_03/" target="_blank" rel="noopener noreferrer" class="btn">Live demo <span aria-hidden="true">&nearr;</span></a>
+                <a href="https://github.com/akki07-hub/FUTURE_FS_03" target="_blank" rel="noopener noreferrer" class="arrow-link">Source code <span aria-hidden="true">&nearr;</span></a>
+              </div>
+            </div>
+            <figure class="project__media">
+              <img src="images/cxr-fitness.jpg" width="800" height="600" alt="CXR Fitness Club landing page hero section" loading="lazy" />
+            </figure>
+          </div>
+        </article>
+
+        <div class="wrap more">
+          <p class="label more__title">More projects</p>
+          <ul class="more__list">
+            <li>
+              <a href="https://github.com/akki07-hub/study_sync" target="_blank" rel="noopener noreferrer" class="more__row">
+                <span class="more__num label">04</span>
+                <span class="more__name" translate="no">StudySync</span>
+                <span class="more__desc">Hackathon app for planning study schedules</span>
+                <span class="more__arrow" aria-hidden="true">&nearr;</span>
+              </a>
             </li>
-            <li class="mini-item">
-              <div class="mini-item__main">
-                <h4>BMI Calculator</h4>
-                <p>Python app that calculates Body Mass Index and classifies the result into standard ranges.</p>
-              </div>
-              <ul translate="no" class="tag-row" aria-label="Technologies"><li>Python</li></ul>
-              <a href="https://github.com/akki07-hub/firstrepo" target="_blank" rel="noopener noreferrer" class="text-link" aria-label="View BMI Calculator code on GitHub">Code &rarr;</a>
+            <li>
+              <a href="https://github.com/akki07-hub/firstrepo" target="_blank" rel="noopener noreferrer" class="more__row">
+                <span class="more__num label">05</span>
+                <span class="more__name">BMI Calculator</span>
+                <span class="more__desc">Python app that classifies BMI into standard ranges</span>
+                <span class="more__arrow" aria-hidden="true">&nearr;</span>
+              </a>
             </li>
           </ul>
         </div>
       </section>
 
-      <!-- ==================== CONTACT ==================== -->
-      <section id="contact" class="section section--alt">
-        <div class="container">
-          <header class="section-head section-head--center" data-aos="fade-up">
-            <p class="eyebrow">04 &mdash; Contact</p>
-            <h2 class="section-title">Let’s Connect</h2>
-            <p class="section-sub">
-              Have an internship, a freelance project or a question? Pick email or LinkedIn.
-              A short message is written for you, so you only need to add your details.
-            </p>
-          </header>
-
-          <div class="connect-grid" data-aos="fade-up" data-aos-delay="100">
-            <article class="connect-card">
-              <span class="connect-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-              </span>
-              <h3>Email Me</h3>
-              <p>Opens your email app with a ready-made message to me. Just fill in your name and details, then send.</p>
-              <div class="connect-card__actions">
-                <a class="btn btn--primary" id="email-btn" href="mailto:smdaakhil1493@gmail.com">Write an Email</a>
-                <button class="btn btn--outline" type="button" data-copy="email">Copy Address</button>
-              </div>
-            </article>
-
-            <article class="connect-card">
-              <span class="connect-card__icon connect-card__icon--linkedin" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-              </span>
-              <h3>Message on LinkedIn</h3>
-              <p>Copies a ready-made message and opens my LinkedIn profile. Click <strong>Message</strong> or <strong>Connect</strong> there and paste it.</p>
-              <div class="connect-card__actions">
-                <a class="btn btn--primary" id="linkedin-btn" href="https://www.linkedin.com/in/shaik-mahammed-aakhil-47132a324/" target="_blank" rel="noopener noreferrer">Copy Message &amp; Open LinkedIn</a>
-              </div>
-            </article>
+      <!-- ==================== ABOUT ==================== -->
+      <section id="about" class="about">
+        <div class="wrap about__grid">
+          <div>
+            <p class="label">002 // About</p>
+            <h2 class="display display--md" data-reveal>The short<br /><span class="outline">version.</span></h2>
           </div>
+          <div class="about__body" data-reveal>
+            <p class="about__lead">
+              I&rsquo;m Aakhil, a computer science student at GITAM University who learns by building.
+            </p>
+            <p>
+              I&rsquo;ve built a college event management system with a full REST API, a
+              placement-readiness dashboard with its own charts and exports, and a business
+              website backed by a live database. Each one started as a real problem I wanted
+              to solve.
+            </p>
+            <p>
+              I&rsquo;m now looking for internships, freelance projects and remote roles where I can
+              keep shipping, learn from experienced engineers and grow into a software or
+              infrastructure developer.
+            </p>
+            <dl class="facts">
+              <div><dt class="label">Education</dt><dd>GITAM University &middot; Computer Science</dd></div>
+              <div><dt class="label">Focus</dt><dd>Full-stack web development</dd></div>
+              <div><dt class="label">Looking for</dt><dd>Internships, freelance, remote roles</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
 
+      <!-- ==================== SKILLS ==================== -->
+      <section id="skills" class="skills" aria-labelledby="skills-title">
+        <div class="wrap">
+          <p class="label">003 // Skills</p>
+          <h2 class="sr-only" id="skills-title">Skills</h2>
+        </div>
+
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee__track">
+            <span>React</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>JavaScript</span><span>Python</span><span>Supabase</span><span>MySQL</span>
+            <span>React</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>JavaScript</span><span>Python</span><span>Supabase</span><span>MySQL</span>
+          </div>
+        </div>
+        <div class="marquee marquee--reverse marquee--outline" aria-hidden="true">
+          <div class="marquee__track">
+            <span>HTML</span><span>CSS</span><span>Java</span><span>C</span><span>Git</span><span>GitHub</span><span>Postman</span><span>Vite</span>
+            <span>HTML</span><span>CSS</span><span>Java</span><span>C</span><span>Git</span><span>GitHub</span><span>Postman</span><span>Vite</span>
+          </div>
+        </div>
+
+        <div class="wrap skill-groups" translate="no">
+          <div><p class="label">Frontend</p><p>HTML, CSS, JavaScript, React</p></div>
+          <div><p class="label">Backend</p><p>Node.js, Express, REST APIs</p></div>
+          <div><p class="label">Databases</p><p>MongoDB, MySQL, Supabase</p></div>
+          <div><p class="label">Languages</p><p>Python, Java, C</p></div>
+          <div><p class="label">Tools</p><p>Git, GitHub, VS Code, Postman, Vite</p></div>
+        </div>
+      </section>
+
+      <!-- ==================== CONTACT ==================== -->
+      <section id="contact" class="contact">
+        <div class="wrap">
+          <p class="label">004 // Contact</p>
+          <h2 class="display display--xl" data-reveal>Let&rsquo;s<br />talk.</h2>
+          <p class="contact__lead" data-reveal>
+            Have an internship, a freelance project or a question? Pick email or LinkedIn.
+            A short message is already written for you, so you only need to add your details.
+          </p>
+
+          <div class="connect" data-reveal>
+            <div class="connect__item">
+              <p class="label">Email</p>
+              <a class="connect__big" id="email-btn" href="mailto:smdaakhil1493@gmail.com">Write an email <span aria-hidden="true">&nearr;</span></a>
+              <p class="connect__hint">Opens your email app with a ready-made message.</p>
+              <button class="text-btn" type="button" data-copy="email">Copy address</button>
+            </div>
+            <div class="connect__item">
+              <p class="label">LinkedIn</p>
+              <a class="connect__big" id="linkedin-btn" href="https://www.linkedin.com/in/shaik-mahammed-aakhil-47132a324/" target="_blank" rel="noopener noreferrer">Message me <span aria-hidden="true">&nearr;</span></a>
+              <p class="connect__hint">Copies a ready-made message and opens my profile. Click Message or Connect and paste it.</p>
+            </div>
+          </div>
           <p class="connect-status" id="connect-status" role="status" aria-live="polite"></p>
         </div>
       </section>
@@ -389,12 +287,11 @@
 
     <!-- ==================== FOOTER ==================== -->
     <footer class="site-footer">
-      <div class="container footer-inner">
-        <p>&copy; 2026 Aakhil. Built with HTML, CSS and JavaScript.</p>
-        <ul class="footer-links">
+      <div class="wrap footer__inner">
+        <p class="label">&copy; 2026 Aakhil</p>
+        <ul class="footer__links">
           <li><a href="https://github.com/akki07-hub" target="_blank" rel="noopener noreferrer">GitHub</a></li>
           <li><a href="https://www.linkedin.com/in/shaik-mahammed-aakhil-47132a324/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-          <li><a href="mailto:smdaakhil1493@gmail.com">Email</a></li>
           <li><a href="#home">Back to top &uarr;</a></li>
         </ul>
       </div>

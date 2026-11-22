@@ -2,111 +2,78 @@
    Portfolio Script — Aakhil
    ============================================================ */
 
-// ── Element References ──────────────────────────────────────
-const menuToggle  = document.getElementById('menu-toggle');
-const navLinks    = document.getElementById('nav-links');
-const navItems    = document.querySelectorAll('.nav-link');
-const sections    = document.querySelectorAll('section[id]');
-const siteHeader  = document.getElementById('site-header');
+const menuToggle = document.getElementById('menu-toggle');
+const navLinks   = document.getElementById('nav-links');
+const navItems   = document.querySelectorAll('.nav-link');
+const siteHeader = document.getElementById('site-header');
 
-// ── Theme Toggle ────────────────────────────────────────────
-const themeToggle = document.getElementById('theme-toggle');
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-const currentTheme = () =>
-  document.documentElement.getAttribute('data-theme') || (prefersDark.matches ? 'dark' : 'light');
-
-if (themeToggle) {
-  themeToggle.addEventListener('click', () => {
-    const next = currentTheme() === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    try { localStorage.setItem('theme', next); } catch (e) {}
-    syncThemeColor();
-  });
-}
-
-// Keep the browser UI colour in step with the chosen theme
-function syncThemeColor() {
-  const color = currentTheme() === 'dark' ? '#0b1220' : '#ffffff';
-  document.querySelectorAll('meta[name="theme-color"]').forEach(m => m.setAttribute('content', color));
-}
-if (document.documentElement.hasAttribute('data-theme')) syncThemeColor();
-
-// ── Mobile Menu Toggle ──────────────────────────────────────
-menuToggle.addEventListener('click', () => {
-  const isOpen = navLinks.classList.toggle('open');
-  menuToggle.classList.toggle('open', isOpen);
-  menuToggle.setAttribute('aria-expanded', isOpen);
-});
-
+// ── Mobile menu ─────────────────────────────────────────────
 const closeMenu = () => {
   navLinks.classList.remove('open');
   menuToggle.classList.remove('open');
   menuToggle.setAttribute('aria-expanded', 'false');
+  menuToggle.setAttribute('aria-label', 'Open navigation menu');
 };
 
-// Close menu with Escape or a click outside it
+menuToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  menuToggle.classList.toggle('open', isOpen);
+  menuToggle.setAttribute('aria-expanded', String(isOpen));
+  menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+});
+
+navItems.forEach(link => link.addEventListener('click', closeMenu));
+
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && navLinks.classList.contains('open')) {
     closeMenu();
     menuToggle.focus();
   }
 });
+
 document.addEventListener('click', e => {
   if (navLinks.classList.contains('open') && !e.target.closest('#nav-links, #menu-toggle')) closeMenu();
 });
 
-// Close menu when a nav link is clicked
-navItems.forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    menuToggle.classList.remove('open');
-    menuToggle.setAttribute('aria-expanded', 'false');
-  });
-});
-
-// ── Active Nav Link (IntersectionObserver, no layout reads) ─
-const navObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    const id = entry.target.getAttribute('id');
-    navItems.forEach(link => {
-      link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-    });
-  });
-}, { rootMargin: '-45% 0px -50% 0px' });
-sections.forEach(section => navObserver.observe(section));
-
-// ── Navbar Shadow on Scroll ─────────────────────────────────
+// ── Header background after scrolling ───────────────────────
 const handleHeaderScroll = () => {
-  siteHeader.classList.toggle('is-scrolled', window.scrollY > 8);
+  siteHeader.classList.toggle('is-scrolled', window.scrollY > 10);
 };
-
 window.addEventListener('scroll', handleHeaderScroll, { passive: true });
 handleHeaderScroll();
 
-// ── Scroll-In Animation (Intersection Observer) ─────────────
-const animatedEls = document.querySelectorAll('[data-aos]');
-
-const observer = new IntersectionObserver(entries => {
+// ── Active nav link ─────────────────────────────────────────
+const navObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const el    = entry.target;
-      const delay = el.dataset.aosDelay || 0;
-      setTimeout(() => {
-        el.classList.add('aos-animate');
-      }, parseInt(delay));
-      observer.unobserve(el);
-    }
+    if (!entry.isIntersecting) return;
+    const id = entry.target.id;
+    navItems.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
   });
-}, { threshold: 0.12 });
+}, { rootMargin: '-45% 0px -50% 0px' });
+document.querySelectorAll('main section[id]').forEach(s => navObserver.observe(s));
 
-// Prepare elements for animation
-animatedEls.forEach(el => {
-  el.classList.add('aos-init');
-  observer.observe(el);
-});
+// ── Reveal on scroll ────────────────────────────────────────
+const revealEls = document.querySelectorAll('[data-reveal]');
+if ('IntersectionObserver' in window) {
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-// ── Contact: Email & LinkedIn with pre-written messages ─────
+  revealEls.forEach((el, i) => {
+    // Stagger the hero lines slightly
+    if (el.closest('.hero')) el.style.transitionDelay = `${Math.min(i, 6) * 90}ms`;
+    if (el.closest('.hero__title')) el.firstElementChild.style.transitionDelay = `${i * 110}ms`;
+    revealObserver.observe(el);
+  });
+} else {
+  revealEls.forEach(el => el.classList.add('is-visible'));
+}
+
+// ── Contact: email & LinkedIn with pre-written messages ─────
 const CONTACT_EMAIL = 'smdaakhil1493@gmail.com';
 
 const EMAIL_SUBJECT = 'Opportunity for Aakhil (via your portfolio)';
@@ -126,8 +93,8 @@ const EMAIL_BODY = [
 ].join('\n');
 
 const LINKEDIN_MESSAGE =
-  "Hi Aakhil, I came across your portfolio and was impressed by your projects. " +
-  "I'd like to connect and talk about a possible opportunity. Looking forward to hearing from you!";
+  'Hi Aakhil, I came across your portfolio and was impressed by your projects. ' +
+  'I’d like to connect and talk about a possible opportunity. Looking forward to hearing from you!';
 
 const connectStatus = document.getElementById('connect-status');
 let statusTimer;
@@ -143,7 +110,6 @@ const copyText = async text => {
     await navigator.clipboard.writeText(text);
     return true;
   } catch (e) {
-    // Fallback for browsers that block the Clipboard API
     const ta = document.createElement('textarea');
     ta.value = text;
     ta.setAttribute('readonly', '');
@@ -166,7 +132,6 @@ if (emailBtn) {
 
 const linkedinBtn = document.getElementById('linkedin-btn');
 if (linkedinBtn) {
-  // The link opens LinkedIn in a new tab; we copy the message at the same time.
   linkedinBtn.addEventListener('click', async () => {
     const ok = await copyText(LINKEDIN_MESSAGE);
     showStatus(ok
