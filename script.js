@@ -170,40 +170,6 @@ if (!prefersReducedMotion) {
 }
 
 
-// ── Colour change between sections ──────────────────────────
-if (!prefersReducedMotion) {
-  // Background tint for each dark section (the Contact section stays light)
-  const SECTION_COLOURS = {
-    home: [10, 10, 10],
-    experience: [9, 14, 30],   // deep navy
-    work: [16, 22, 5],         // dark lime
-    about: [24, 15, 12],       // warm brown-black
-    skills: [10, 10, 10],
-  };
-  const colourSections = [...document.querySelectorAll('main > section')]
-    .filter(s => SECTION_COLOURS[s.id]);
-  const root = document.documentElement;
-  const mix = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t));
-  const updateColour = () => {
-    const vh = window.innerHeight;
-    const mid = vh * 0.5;
-    const blend = vh * 0.45; // how long the fade between two colours lasts
-    let colour = SECTION_COLOURS[colourSections[0].id];
-    colourSections.forEach((section, i) => {
-      const { top, bottom } = section.getBoundingClientRect();
-      if (top > mid || bottom < mid) return;
-      const own = SECTION_COLOURS[section.id];
-      const next = colourSections[i + 1] ? SECTION_COLOURS[colourSections[i + 1].id] : own;
-      const t = Math.min(Math.max(1 - (bottom - mid) / blend, 0), 1);
-      colour = mix(own, next, t * t * (3 - 2 * t));
-    });
-    root.style.setProperty('--page-bg', `rgb(${colour.join(',')})`);
-  };
-  window.addEventListener('scroll', updateColour, { passive: true });
-  window.addEventListener('resize', updateColour);
-  updateColour();
-}
-
 // ── Pinned SmartLab AR showcase: highlight the step beside the phone ─
 const pinnedSteps = [...document.querySelectorAll('.project--pinned .project__points li')];
 if (pinnedSteps.length) {

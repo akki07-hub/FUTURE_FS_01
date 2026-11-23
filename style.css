@@ -861,12 +861,6 @@ p { text-wrap: pretty; }
   }
 }
 
-/* ---------- Colour change on scroll ---------- */
-@media (prefers-reduced-motion: no-preference) {
-  /* script.js blends --page-bg between each section's colour */
-  .scrollfx main > section:not(.contact) { background-color: var(--page-bg, var(--ink)); }
-}
-
 /* ---------- Pinned SmartLab AR showcase (desktop) ---------- */
 @media (min-width: 981px) and (min-height: 600px) {
   .project--pinned .project__grid { align-items: start; }
