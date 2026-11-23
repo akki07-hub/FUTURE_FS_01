@@ -80,6 +80,95 @@ if (!prefersReducedMotion) {
   updateSections();
 }
 
+// ── Text reveal, scroll ticker and 3D tilt ──────────────────
+if (!prefersReducedMotion) {
+  const clamp = n => Math.min(Math.max(n, 0), 1);
+
+  // 1. About text: split into words that light up as you scroll
+  const revealBlocks = [...document.querySelectorAll('.about__body > p')].map(p => {
+    const walker = document.createTreeWalker(p, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => {
+      const frag = document.createDocumentFragment();
+      node.textContent.split(/(\s+)/).forEach(part => {
+        if (!part) return;
+        if (/^\s+$/.test(part)) { frag.append(part); return; }
+        const span = document.createElement('span');
+        span.className = 'word';
+        span.textContent = part;
+        frag.append(span);
+      });
+      node.replaceWith(frag);
+    });
+    return { el: p, words: [...p.querySelectorAll('.word')] };
+  });
+
+  // 3. Project screenshots: tilt in 3D, alternating sides
+  const tiltEls = [...document.querySelectorAll('.project__media:not(.project__media--phone):not(.project__media--type)')];
+  tiltEls.forEach(el => {
+    el.classList.add('tilt');
+    const project = el.closest('.project');
+    const even = project && [...project.parentElement.children].filter(c => c.classList.contains('project')).indexOf(project) % 2 === 1;
+    el.style.setProperty('--tilt-side', even ? -1 : 1);
+  });
+
+  const updateScrollEffects = () => {
+    const vh = window.innerHeight;
+    revealBlocks.forEach(({ el, words }) => {
+      const r = el.getBoundingClientRect();
+      // Starts when the paragraph is 85% down the screen, done when its bottom reaches 45%
+      const p = clamp((vh * 0.85 - r.top) / (r.height + vh * 0.4));
+      const lit = Math.round(p * words.length);
+      words.forEach((w, i) => w.classList.toggle('is-lit', i < lit));
+    });
+    tiltEls.forEach(el => {
+      const r = el.getBoundingClientRect();
+      const p = clamp((vh - r.top) / (vh * 0.75));
+      el.style.setProperty('--tilt-in', (1 - Math.pow(1 - p, 2)).toFixed(3));
+    });
+  };
+  window.addEventListener('scroll', updateScrollEffects, { passive: true });
+  window.addEventListener('resize', updateScrollEffects);
+  updateScrollEffects();
+
+  // 2. Skills strips: drift slowly, speed up and follow your scroll direction
+  const tracks = [...document.querySelectorAll('.marquee__track')].map(track => ({
+    track,
+    sign: track.closest('.marquee--reverse') ? -1 : 1,
+    offset: 0,
+  }));
+  let lastY = window.scrollY, direction = 1, boost = 0, lastT = 0, running = false;
+  window.addEventListener('scroll', () => {
+    const dy = window.scrollY - lastY;
+    lastY = window.scrollY;
+    if (dy !== 0) direction = Math.sign(dy);
+    boost = Math.min(boost + Math.abs(dy) * 0.6, 60);
+  }, { passive: true });
+
+  const tick = t => {
+    if (!running) return;
+    const dt = lastT ? Math.min(t - lastT, 50) / 1000 : 0;
+    lastT = t;
+    const speed = (40 + boost * 18) * direction; // pixels per second
+    boost *= Math.pow(0.04, dt); // ease back to the base speed
+    tracks.forEach(item => {
+      if (item.track.parentElement.matches(':hover')) return;
+      const half = item.track.scrollWidth / 2;
+      item.offset = (((item.offset + speed * item.sign * dt) % half) + half) % half;
+      item.track.style.transform = `translateX(${-item.offset}px)`;
+    });
+    requestAnimationFrame(tick);
+  };
+  const skills = document.getElementById('skills');
+  if (skills && tracks.length) {
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !running) { running = true; lastT = 0; requestAnimationFrame(tick); }
+      else if (!entry.isIntersecting) running = false;
+    }).observe(skills);
+  }
+}
+
 // ── Header background after scrolling ───────────────────────
 const handleHeaderScroll = () => {
   siteHeader.classList.toggle('is-scrolled', window.scrollY > 10);

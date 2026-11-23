@@ -839,3 +839,24 @@ p { text-wrap: pretty; }
     transform-origin: 50% 100%;
   }
 }
+
+/* ---------- Scroll effects: text reveal, scroll ticker, 3D tilt ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  /* About text lights up word by word */
+  .scrollfx .word { opacity: 0.16; transition: opacity 0.25s ease; }
+  .scrollfx .word.is-lit { opacity: 1; }
+
+  /* Skills strips move with your scroll (script.js drives them) */
+  .scrollfx .marquee__track { animation: none; will-change: transform; }
+
+  /* Project screenshots tilt in 3D and flatten as they arrive */
+  .scrollfx .project__media.tilt {
+    --t: calc(1 - var(--tilt-in, 1));
+    transform: perspective(1400px)
+      rotateX(calc(var(--t) * 26deg))
+      rotateY(calc(var(--t) * var(--tilt-side, 1) * -12deg))
+      scale(calc(1 - var(--t) * 0.12));
+    transform-origin: 50% 100%;
+    will-change: transform;
+  }
+}
