@@ -39,6 +39,24 @@ document.addEventListener('click', e => {
   if (navLinks.classList.contains('open') && !e.target.closest('#nav-links, #menu-toggle')) closeMenu();
 });
 
+// ── Scroll progress bar (fallback for browsers without scroll-driven CSS) ─
+const progressBar = document.getElementById('scroll-progress');
+const supportsScrollTimeline = window.CSS?.supports?.('animation-timeline: scroll()');
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (progressBar && (!supportsScrollTimeline || prefersReducedMotion)) {
+  let ticking = false;
+  const updateProgress = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.setProperty('--progress', max > 0 ? Math.min(window.scrollY / max, 1) : 0);
+    ticking = false;
+  };
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(updateProgress); }
+  }, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+}
+
 // ── Header background after scrolling ───────────────────────
 const handleHeaderScroll = () => {
   siteHeader.classList.toggle('is-scrolled', window.scrollY > 10);

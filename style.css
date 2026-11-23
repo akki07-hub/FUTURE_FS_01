@@ -412,6 +412,7 @@ p { text-wrap: pretty; }
   transition: filter 0.4s ease, transform 0.6s ease;
 }
 .project:hover .project__media img { filter: none; transform: scale(1.03); }
+.project__media:not(.project__media--phone):not(.project__media--type) img { scale: 1.12; }
 
 .project__points { margin: -4px 0 24px; max-width: 520px; }
 .project__points li {
@@ -701,3 +702,113 @@ p { text-wrap: pretty; }
   .stat__num { font-size: 1.9rem; }
   .stats .label { font-size: 0.65rem; letter-spacing: 0.12em; }
 }
+
+
+/* ============================================================
+   Scroll transitions
+   CSS scroll-driven animations where supported (Chrome, Edge, Safari 26+);
+   other browsers keep the fade-in reveals. All off for reduced motion.
+   ============================================================ */
+
+/* Reading progress bar */
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 60;
+  height: 3px;
+  background: var(--accent);
+  transform-origin: 0 50%;
+  transform: scaleX(var(--progress, 0));
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+
+    /* Progress bar follows the page scroll */
+    .scroll-progress {
+      transform: scaleX(0);
+      animation: progress-grow linear both;
+      animation-timeline: scroll(root block);
+    }
+
+    /* Hero headline drifts up and fades as you scroll past it */
+    .hero__title,
+    .hero__bottom {
+      animation: hero-exit linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 90vh;
+    }
+    .hero__bottom { animation-name: hero-exit-soft; }
+
+    /* Section headings slide in from the left */
+    .display--md {
+      animation: slide-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 35%;
+    }
+
+    /* Outlined words fill with colour as they cross the screen */
+    .display .outline {
+      background: linear-gradient(90deg, var(--white) 50%, transparent 50%) 100% 0 / 200% 100% no-repeat;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: text-fill linear both;
+      animation-timeline: view();
+      animation-range: entry 40% cover 55%;
+    }
+
+    /* "LET'S TALK." grows into place */
+    .display--xl {
+      animation: grow-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+      transform-origin: left center;
+    }
+
+    /* Project screenshots: gentle parallax inside their frame */
+    .project__media:not(.project__media--phone):not(.project__media--type) img {
+      animation: parallax linear both;
+      animation-timeline: view();
+    }
+
+    /* Phone demo and VR panel rise slightly faster than the page */
+    .project__media--phone,
+    .project__media--type {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+
+    /* Bullet points, tech tags and project rows appear one by one */
+    .project__points li,
+    .stack li,
+    .job__built li,
+    .more__list li,
+    .facts > div,
+    .skill-groups > div {
+      animation: item-in linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 100%;
+    }
+
+    /* Big project names slide up as their section enters */
+    .project__name,
+    .job__role {
+      animation: name-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+  }
+}
+
+@keyframes progress-grow { to { transform: scaleX(1); } }
+@keyframes hero-exit { to { opacity: 0.15; translate: 0 -12vh; scale: 0.94; } }
+@keyframes hero-exit-soft { to { opacity: 0; translate: 0 -6vh; } }
+@keyframes slide-in { from { translate: -8vw 0; opacity: 0.2; } to { translate: 0 0; opacity: 1; } }
+@keyframes text-fill { to { background-position: 0 0; } }
+@keyframes grow-in { from { scale: 0.82; opacity: 0.3; } to { scale: 1; opacity: 1; } }
+@keyframes parallax { from { translate: 0 -5%; } to { translate: 0 5%; } }
+@keyframes rise { from { translate: 0 60px; } to { translate: 0 -60px; } }
+@keyframes item-in { from { opacity: 0; translate: 0 18px; } to { opacity: 1; translate: 0 0; } }
+@keyframes name-up { from { translate: 0 40px; opacity: 0.3; } to { translate: 0 0; opacity: 1; } }
