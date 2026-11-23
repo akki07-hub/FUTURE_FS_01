@@ -860,3 +860,52 @@ p { text-wrap: pretty; }
     will-change: transform;
   }
 }
+
+/* ---------- Colour change on scroll ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  /* script.js blends --page-bg between each section's colour */
+  .scrollfx main > section:not(.contact) { background-color: var(--page-bg, var(--ink)); }
+}
+
+/* ---------- Pinned SmartLab AR showcase (desktop) ---------- */
+@media (min-width: 981px) and (min-height: 600px) {
+  .project--pinned .project__grid { align-items: start; }
+  .project--pinned .project__media--phone {
+    position: sticky;
+    top: calc(var(--header-h) + 24px);
+    animation: none !important;
+    translate: none !important;
+  }
+  .project--pinned .demo-video { width: min(100%, 300px, calc((100vh - var(--header-h) - 110px) * 9 / 20)); }
+  .project--pinned .project__points { margin: 40px 0 48px; max-width: 560px; }
+  .project--pinned .project__points li {
+    min-height: 38vh;
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 64px;
+    border-top: 1px solid var(--line);
+    font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+    line-height: 1.35;
+    color: var(--muted-2);
+    counter-increment: step;
+    transition: color 0.35s ease;
+  }
+  .project--pinned .project__points { counter-reset: step; }
+  .project--pinned .project__points li::before {
+    content: '0' counter(step);
+    top: 50%;
+    left: 0;
+    width: auto;
+    height: auto;
+    background: none;
+    border-radius: 0;
+    transform: translateY(-50%);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    color: var(--muted-2);
+    transition: color 0.35s ease;
+  }
+  .project--pinned .project__points li.is-active { color: var(--white); }
+  .project--pinned .project__points li.is-active::before { color: var(--accent); }
+}
