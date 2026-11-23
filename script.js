@@ -57,6 +57,29 @@ if (progressBar && (!supportsScrollTimeline || prefersReducedMotion)) {
   updateProgress();
 }
 
+// ── Section transitions: sections open out as they scroll in ─
+if (!prefersReducedMotion) {
+  const fxSections = [...document.querySelectorAll('main > section:not(.hero)')];
+  document.documentElement.classList.add('scrollfx');
+  const clamp01 = n => Math.min(Math.max(n, 0), 1);
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  const updateSections = () => {
+    const vh = window.innerHeight;
+    fxSections.forEach(section => {
+      const { top, bottom } = section.getBoundingClientRect();
+      // 0 when the section's top is at the bottom of the screen, 1 when it reaches 35% from the top
+      const enter = ease(clamp01((vh - top) / (vh * 0.65)));
+      // 0 until the section's bottom reaches the middle, 1 when it leaves the top
+      const leave = clamp01((vh * 0.5 - bottom) / (vh * 0.5));
+      section.style.setProperty('--enter', enter.toFixed(3));
+      section.style.setProperty('--leave', leave.toFixed(3));
+    });
+  };
+  window.addEventListener('scroll', updateSections, { passive: true });
+  window.addEventListener('resize', updateSections);
+  updateSections();
+}
+
 // ── Header background after scrolling ───────────────────────
 const handleHeaderScroll = () => {
   siteHeader.classList.toggle('is-scrolled', window.scrollY > 10);
