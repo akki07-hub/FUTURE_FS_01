@@ -340,6 +340,21 @@ p { text-wrap: pretty; }
 .job__points { max-width: 640px; }
 .job .stack { margin-bottom: 20px; }
 .job__cert { color: var(--muted-2); }
+.job__built-title { margin: 8px 0 10px; }
+.job__built { list-style: none; padding: 0; margin: 0 0 24px; max-width: 640px; border-top: 1px solid var(--line); }
+.job__built a {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font-weight: 500;
+  transition: color 0.2s ease, padding 0.2s ease;
+}
+.job__built a > span:last-child { margin-left: auto; }
+.job__built a:hover { color: var(--accent); padding-left: 8px; }
+.job__built-note { color: var(--muted); font-weight: 400; font-size: 0.9rem; }
+.intern-tag { color: var(--accent); }
 
 /* ---------- Work ---------- */
 .work { padding: 140px 0 120px; border-top: 1px solid var(--line); }
